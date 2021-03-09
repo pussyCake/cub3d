@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 19:00:43 by pantigon          #+#    #+#             */
-/*   Updated: 2020/11/08 18:13:23 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:50:42 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,14 @@ void				ft_putnbr_fd(int n, int fd);
 void				ft_putendl_fd(char *s, int fd);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
+void				ft_putlist(char *str);
+void				ft_lstadd_back(t_list **lst, t_list *new);
+void				ft_lstadd_front(t_list **lst, t_list *new);
+void				ft_lstclear(t_list **lst, void (*del)(void*));
+void				ft_lstdelone(t_list *lst, void (*del)(void*));
+void				ft_lstiter(t_list *lst, void (*f)(void *));
+t_list				*ft_lstlast(t_list *lst);
+t_list				*ft_lstnew(void *content);
+int					ft_lstsize(t_list *lst);
 
 #endif

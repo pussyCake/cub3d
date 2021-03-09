@@ -6,29 +6,28 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 14:51:44 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/07 13:13:29 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:50:34 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
-char	*ft_strdup(const char *str)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		len;
-	char	*s;
+	size_t	len;
+	char	*sum;
 
-	if (!str)
+	if (!s1 && !s2)
 		return (NULL);
-	len = ft_strlen(str);
-	s = (char*)malloc(sizeof(char) * (len + 1));
-	if (s == NULL)
+	len = ft_strlen(s1) + ft_strlen(s2);
+	if ((sum = (char*)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
-	while (len >= 0)
-	{
-		s[len] = str[len];
-		len--;
-	}
-	return (s);
+	ft_memmove(sum, s1, ft_strlen(s1));
+	ft_memmove(sum + ft_strlen(s1), s2, ft_strlen(s2));
+	sum[len] = '\0';
+	free((char *)s1);
+	return (sum);
 }
 
 char	*new_box(char *box)
