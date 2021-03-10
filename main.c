@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/10 19:00:48 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/10 19:27:34 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_p_big(t_win *img, int x, int y, int col)
 	}
 }
 
-void	ft_print_map(t_cub *cub)
+void	ft_print_map(t_cub *cub, int col, int col_plr)
 {
 	int i;
 	int j;
@@ -51,12 +51,12 @@ void	ft_print_map(t_cub *cub)
 		while (cub->map[j][i])
 		{
 			if (cub->map[j][i] == '1')
-				ft_p_big(cub->win, i, j, 0xFFFFFF);
+				ft_p_big(cub->win, i, j, col);
 			i++;
 		}
 		j++;
 	}
-	ft_p_big(cub->win, cub->plr->x, cub->plr->y, 0x8a2be2);
+	ft_p_big(cub->win, cub->plr->x, cub->plr->y, col_plr);
 	mlx_put_image_to_window(cub->win->mlx, cub->win->win, cub->win->img, 0, 0);
 }
 
@@ -68,6 +68,8 @@ int		ft_exit(t_win *win)
 
 int		ft_close(int key, t_cub *cub)
 {
+	mlx_clear_window(cub->win->mlx, cub->win->win);
+	ft_print_map(cub, 0x000000, 0x000000);
 	if (key == 13)
 		cub->plr->y -= 1;
 	if (key == 1)
@@ -79,7 +81,7 @@ int		ft_close(int key, t_cub *cub)
 	if (key == 53)
 		exit(0);
 		//mlx_destroy_window(win->mlx, win->win);
-	ft_print_map(cub);
+	ft_print_map(cub, 0xFFFFFF, 0x991199);
 	return (0);
 }
 
@@ -118,7 +120,7 @@ int     main(int argc, char **argv)
 	cub.win = &win;
 	cub.plr = &plr;
 	parse_map(argc, argv, &cub);
-	ft_print_map(&cub);
+	ft_print_map(&cub, 0xFFFFFF, 0x991199);
 	mlx_hook(cub.win->win, 2, 1L<<0, ft_close, &cub);
 	mlx_hook(cub.win->win, 17, 1L<<0, ft_exit, &cub);
 //	mlx_put_image_to_window(cub.win->mlx, cub.win->win, cub.win->img, 0, 0);
