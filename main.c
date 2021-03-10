@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/10 18:51:37 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/10 19:00:48 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	ft_print_map(t_cub *cub)
 	mlx_put_image_to_window(cub->win->mlx, cub->win->win, cub->win->img, 0, 0);
 }
 
-int		key_hook(int keycode, t_win *win)
+int		ft_exit(t_win *win)
 {
-    printf("Hello from key_hook!\n");
+    exit(0);
 	return (0);
 }
 
@@ -120,6 +120,7 @@ int     main(int argc, char **argv)
 	parse_map(argc, argv, &cub);
 	ft_print_map(&cub);
 	mlx_hook(cub.win->win, 2, 1L<<0, ft_close, &cub);
+	mlx_hook(cub.win->win, 17, 1L<<0, ft_exit, &cub);
 //	mlx_put_image_to_window(cub.win->mlx, cub.win->win, cub.win->img, 0, 0);
     mlx_loop(cub.win->mlx);
 }    
