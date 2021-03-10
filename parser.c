@@ -6,33 +6,51 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/09 14:50:14 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:41:57 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-char	**make_map(t_list **head, int size)
+void	ft_init_plr(t_cub *cub)
 {
-	char	**map;
+	int	i;
+	int	j;
+
+	j = 0;
+	while (cub->map[j])
+	{
+		i = 0;
+		while (cub->map[j][i])
+		{
+			if (cub->map[j][i] == 'N')
+			{
+				cub->plr->x = i;
+				cub->plr->y = j;
+			}
+			i++;
+		}
+		j++;
+	}
+}
+
+void	make_map(t_list **head, int size, t_cub *cub)
+{
 	int		i;
 	t_list	*tmp;
 
-	map = ft_calloc(size + 1, sizeof(char*));
+	cub->map = ft_calloc(size + 1, sizeof(char*));
 	i = -1;
 	tmp = *head;
 	while (tmp)
 	{
-		map[++i] = tmp->content;
+		cub->map[++i] = tmp->content;
 		tmp = tmp->next;
 	}
-	i = -1;
-	while (map[++i])
-		ft_putlist(map[i]);
-	return (map);
+	ft_init_plr(cub);
 }
 
-char	**parse_map(int argc, char **argv)
+void	parse_map(int argc, char **argv, t_cub *cub)
 {
 	int		fd;
 	char	*line;
@@ -44,5 +62,5 @@ char	**parse_map(int argc, char **argv)
 	while (get_next_line(fd, &line))
 		ft_lstadd_back(&head, ft_lstnew(line));
 	ft_lstadd_back(&head, ft_lstnew(line));
-	return (make_map(&head, ft_lstsize(head)));
+	make_map(&head, ft_lstsize(head), cub);
 }
