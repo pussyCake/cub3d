@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/10 18:08:51 by pantigon         ###   ########.fr        #
+#    Updated: 2021/03/13 11:43:02 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ FRAMEWORK = -framework OpenGL -framework AppKit
 
 INCLUDE = -I./include -I./srcs/libft/ -I./srcs/gnl/
 
-SRCS =	main.c\
-		parser.c\
+SRCS =	srcs/main.c\
+		srcs/parser.c\
 		./srcs/gnl/get_next_line.c
 
 SRCS_TEST = test.c ./srcs/gnl/get_next_line.c

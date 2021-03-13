@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/10 17:40:54 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/13 12:18:16 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 #define CUB_H
 #include <stdio.h>
 #include <fcntl.h>
+#include <math.h>
 #include "libft.h"
 #include "mlx.h"
 #include "get_next_line.h"
+
+#define SCALE 16
+#define _USE_MATH_DEFINES 
 
 typedef struct  s_win
 {
@@ -31,8 +35,9 @@ typedef struct  s_win
 
 typedef struct	s_player
 {
-	int			x;
-	int			y;
+	float			x;
+	float			y;
+	float			dir;
 }				t_plr;
 
 typedef struct s_cub
