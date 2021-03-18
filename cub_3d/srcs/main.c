@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/13 16:13:44 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:17:54 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,41 @@ void	ft_p_big(t_win *img, int x, int y, int col)
 	}
 }
 
+void	ft_px_big(t_win *img, int x, int y, int col)
+{
+	int x_start;
+	int y_start;
+
+	//y = y * SCALE;
+	x = x * SCALE;
+	x_start = x;
+	y_start = y;
+	while ((y++ < y_start + SCALE))
+	{
+		x = x_start;
+		while (x++ < x_start + SCALE)
+			my_mlx_pixel_put(img, x, y, col);
+	}
+}
+
 void	ft_print_column(t_cub *cub, int len, int x)
 {
 	int i;
 	int h;
-	int h1;
+	int d;
+	int h_start;
 
 	i = 0;
-	h = 500 / len * (300 / tan(M_PI / 6));
-	h1 = 500 / 2 - h / 2;
-	while (h1 + i < h1 + h)
+	d = 300 / tan(M_PI / 6);
+	h = (SCALE * d) / len;
+	if (h >= 500)
+		h = 499;
+	h_start = 250 - h / 2;
+	while (h_start + i < h_start + h)
 	{
-		my_mlx_pixel_put(cub->win, x, h1 + i++, 0xFFFFFF);
-		//ft_p_big(cub->win, x, h1 + i++, 0xFFFFFF);
+	 	my_mlx_pixel_put(cub->win, x, h_start + i++, 0xFFFFFF);
 	}
-	mlx_put_image_to_window(cub->win->mlx, cub->win->win, cub->win->img, 0, 0);
+	//mlx_put_image_to_window(cub->win->mlx, cub->win->win, cub->win->img, 0, 0);
 }
 
 void	ft_cast_ray(t_cub *cub, int col)
@@ -76,32 +96,36 @@ void	ft_cast_ray(t_cub *cub, int col)
 			//my_mlx_pixel_put(cub->win, ray.x, ray.y, col);
 			//mlx_put_image_to_window(cub->win->mlx, cub->win->win, cub->win->img, 0, 0);
 		}
-		len = sqrt(pow((ray.x / SCALE - cub->plr->x / SCALE), 2) + pow((ray.y / SCALE - cub->plr->y / SCALE), 2));
-		//len = sqrt(pow((cub->plr->x / SCALE - ray.x / SCALE), 2) + pow((cub->plr->y / SCALE - ray.y / SCALE), 2));
+		len = sqrt(pow((ray.x - cub->plr->x), 2) + pow((ray.y - cub->plr->y), 2));
+		//len = sqrt(pow((cub->plr->x - ray.x), 2) + pow((cub->plr->y - ray.y), 2));
+		//len = fabsf(((ray.x - cub->plr->x) / cos(start)));
+		len = len * cos(ray.dir - start);
 		ft_print_column(cub, len, i++);
+		//printf("%d---", 1);
 		start += (M_PI / 3) / 600;
 		mlx_put_image_to_window(cub->win->mlx, cub->win->win, cub->win->img, 0, 0);
 	}
 }
 
-void	ft_print_map(t_cub *cub, int col, int col_plr)
+void	ft_print_map(t_cub *cub, int col)
 {
 	int i;
+	int x;
+	int y;
 	int j;
 
 	j = 0;
-	while (cub->map[j])
+	x = 600;
+	y = 500;
+	while (j < y)
 	{
 		i = 0;
-		while (cub->map[j][i])
-		{
-			if (cub->map[j][i] == '1')
-				ft_p_big(cub->win, i, j, col);
-			i++;
-		}
+		while (i < x)
+		my_mlx_pixel_put(cub->win, i++, j, col);
+			//ft_p_big(cub->win, i++, j, col);
 		j++;
 	}
-	ft_cast_ray(cub, col_plr);
+	//ft_cast_ray(cub, col_plr);
 	//ft_p_big(cub->win, cub->plr->x, cub->plr->y, col_plr);
 	mlx_put_image_to_window(cub->win->mlx, cub->win->win, cub->win->img, 0, 0);
 }
@@ -114,9 +138,9 @@ int		ft_exit(t_win *win)
 
 int		ft_close(int key, t_cub *cub)
 {
-	//mlx_clear_window(cub->win->mlx, cub->win->win);
+	mlx_clear_window(cub->win->mlx, cub->win->win);
 	//mlx_destroy_image(cub->win->mlx, cub->win->img);
-	ft_print_map(cub, 0x000000, 0x000000);
+	ft_print_map(cub, 0x000000);
 	if (key == 13)
 	{
 		cub->plr->y += sin(cub->plr->dir)* 4;
@@ -153,7 +177,7 @@ int     main(int argc, char **argv)
 				&win.endian);
 	plr.x = -1;
 	plr.y = -1;
-	plr.dir = M_PI_2 * 3;
+	plr.dir = M_PI_2;
 	cub.win = &win;
 	cub.plr = &plr;
 	parse_map(argc, argv, &cub);

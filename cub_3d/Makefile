@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/13 11:43:02 by pantigon         ###   ########.fr        #
+#    Updated: 2021/03/16 21:40:10 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,8 @@ $(NAME):
 	gcc $(SRCS) $(INCLUDE) libmlx.dylib $(FRAMEWORK) -o $(NAME) $(LIB)libft.a
 	# gcc $(FLAG) -I./minilibx_mms -c main.c -o main.c
     # gcc -Lmlx -llibmlx $(FRAMEWORK) -o $(NAME)
+	./$(NAME) map/map.cub
+
 
 test:
 	gcc $(SRCS_TEST) $(INCLUDE) -o test ./srcs/libft/libft.a

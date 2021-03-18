@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/16 20:01:23 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:21:45 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_p_big(t_win *img, int x, int y, int col)
 {
 	int x_start;
 	int y_start;
+	
 
 	y = y * SCALE;
 	x = x * SCALE;
@@ -143,7 +144,7 @@ int		ft_close(int key, t_cub *cub)
 		exit(0);
 	//mlx_destroy_window(cub->win->mlx, cub->win->win);
 	//ft_cast_ray(cub, 0xFFFFFF);
-	ft_print_map(cub, 0xFFFFFF, 0x991199);
+	ft_print_map(cub, 0x808080, 0xfcf5a4);
 	return (0);
 }
 
@@ -184,7 +185,7 @@ int     main(int argc, char **argv)
 	cub.plr = &plr;
 	parse_map(argc, argv, &cub);
 	//ft_cast_ray(&cub, 0xFFFFFF);
-	ft_print_map(&cub, 0xFFFFFF, 0x991199);
+	ft_print_map(&cub, 0x808080, 0xfcf5a4);
 	//mlx_put_image_to_window(cub.win->mlx, cub.win->win, cub.win->img, 0, 0);
 	mlx_hook(cub.win->win, 2, 1L<<0, ft_close, &cub);
 	mlx_hook(cub.win->win, 17, 1L<<0, ft_exit, &cub);

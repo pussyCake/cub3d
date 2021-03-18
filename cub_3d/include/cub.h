@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/13 16:11:27 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:33:39 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <math.h>
+#include <stdlib.h>
 #include "libft.h"
 #include "mlx.h"
 #include "get_next_line.h"

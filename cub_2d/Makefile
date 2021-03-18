@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/16 19:43:56 by pantigon         ###   ########.fr        #
+#    Updated: 2021/03/16 21:06:00 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,7 @@ $(NAME):
 # 	./$(NAME) map/map.cub
 
 test:
-	gcc $(SRCS_TEST) $(INCLUDE) -o test ./srcs/libft/libft.a
-
+	gcc $(SRCS_TEST) $(INCLUDE) -o test ./srcs/libft/libft.9a
 
 clean:
 	rm -f $(OBJS)
