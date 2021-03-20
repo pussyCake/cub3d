@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/19 12:43:23 by pantigon         ###   ########.fr        #
+#    Updated: 2021/03/20 19:01:37 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,18 @@ FRAMEWORK = -framework OpenGL -framework AppKit
 INCLUDE = -I./include -I./srcs/libft/ -I./srcs/gnl/ -I./srcs/mlx/
 
 SRCS =	srcs/main.c\
+		srcs/img.c\
+		srcs/init.c\
+		srcs/make_map.c\
 		srcs/parser.c\
 		./srcs/gnl/get_next_line.c
 
-SRCS_TEST = test.c ./srcs/gnl/get_next_line.c
+SRCS_TEST = test.c\
+			srcs/img.c\
+			srcs/init.c\
+			srcs/make_map.c\
+			srcs/parser.c\
+			srcs/gnl/get_next_line.c
 
 MLX = ./srcs/mlx/
 
@@ -42,9 +50,13 @@ $(NAME):
 	./$(NAME) map/map.cub
 
 
-test:
-	gcc $(SRCS_TEST) $(INCLUDE) -o test ./srcs/libft/libft.a
+test: t_r
+	@make -C $(LIB) 
+	@make -C $(MLX) 
+	gcc $(SRCS_TEST) $(INCLUDE) $(FRAMEWORK) -g -o test $(LIB)libft.a $(MLX)libmlx.a
 
+t_r:
+	rm -f test
 
 clean:
 	rm -f $(OBJS)

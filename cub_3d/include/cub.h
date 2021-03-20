@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -45,11 +46,23 @@ typedef struct s_cub
 {
 	t_win		*win;
 	t_plr		*plr;
+	t_list		*tmap;
+	int			r;
+	int			win_w;
+	int			win_h;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*s;
+	int			f;
+	int			c;
 	char		**map;
 }				t_cub;
 
-
-void	parse_map(int argc, char **argv, t_cub *cub);
-void	make_map(t_list **head, int size, t_cub *cub);
+int		create_trgb(int t, int r, int g, int b);
+void	parse_cub(char *argv, t_cub *cub);
+void	make_map(t_cub *cub);
+void	ft_init_cub(t_cub *cub);
 
 #endif
