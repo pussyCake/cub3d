@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/20 19:01:37 by pantigon         ###   ########.fr        #
+#    Updated: 2021/03/21 18:40:11 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,13 @@ $(NAME):
 	@make -C $(LIB) 
 	@make -C $(MLX) 
 	gcc $(SRCS) $(INCLUDE) $(FRAMEWORK) -o $(NAME) $(LIB)libft.a $(MLX)libmlx.a
-	./$(NAME) map/map.cub
+	./$(NAME) map/map2.cub
 
 
 test: t_r
 	@make -C $(LIB) 
 	@make -C $(MLX) 
-	gcc $(SRCS_TEST) $(INCLUDE) $(FRAMEWORK) -g -o test $(LIB)libft.a $(MLX)libmlx.a
+	gcc $(SRCS_TEST) $(INCLUDE) $(FRAMEWORK) -o test $(LIB)libft.a $(MLX)libmlx.a
 
 t_r:
 	rm -f test

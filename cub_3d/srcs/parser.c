@@ -6,13 +6,13 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/20 19:04:51 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/21 12:14:36 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-// void	is_valid_data(const char *s, char c, int n, char *err)
+// void	ft_check_valid(const char *s, char c, int n, char *err)
 // {
 // 	int i;
 // 	int j;
@@ -21,7 +21,7 @@
 // 	i = -1;
 // 	while (s && s[++i])
 // 		((s[i] < '0' || s[i] > '9') && s[i] != c)
-// 		? exit_notify(err, 22) : 0;
+// 		? ft_notify_error(err, 22) : 0;
 // 	i = -1;
 // 	j = 0;
 // 	spl = 0;
@@ -37,7 +37,7 @@
 // 		spl += (s[i] == c && c == ',' ? 1 : 0);
 // 	}
 // 	if (j != n || (c == ',' && spl != 2))
-// 		exit_notify(err, 22);
+// 		ft_notify_error(err, 22);
 // }
 
 void		ft_parse_fc(char *s, char c, t_cub *cub)
@@ -48,7 +48,7 @@ void		ft_parse_fc(char *s, char c, t_cub *cub)
 	char	*tmp;
 
 	tmp = s;
-	//is_valid_data(s, ',', 3, "no valid clr!");
+	//ft_check_valid(s, ',', 3, "no valid clr!");
 	r = ft_atoi(s);
 	while (*(s - 1) != ',' && *s != '\0')
 		s++;
@@ -57,7 +57,7 @@ void		ft_parse_fc(char *s, char c, t_cub *cub)
 		s++;
 	b = ft_atoi(s + 1);
 	//(r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
-	//? exit_notify("no valid clr!", 22) : 0;
+	//? ft_notify_error("no valid clr!", 22) : 0;
 	if (c == 'F')
 		cub->f = create_trgb(0, r, g, b);
 	else
@@ -67,25 +67,29 @@ void		ft_parse_fc(char *s, char c, t_cub *cub)
 
 void		ft_get_win_sz(t_cub *cub, char *s)
 {
-	//is_valid_data(++s, ' ', 2, "No valid screen size");
+	//ft_check_valid(++s, ' ', 2, "No valid screen size");
 	cub->win_w = ft_atoi(s);
 	while (s && *s == ' ' && *s != '\0')
 		s++;
 	while (s && *s != ' ' && *s != '\0')
 		s++;
 	cub->win_h = ft_atoi(s);
-	mlx_get_screen_size(cub->win->mlx, &cub->x_mx, &cub->y_mx);
-	cub->win_w < 320 ? cub->win_w = 320 : 0;
-	cub->win_h < 240 ? cub->win_h = 240 : 0;
-	cub->win_w > cub->x_mx ? cub->win_w = cub->x_mx : 0;
-	cub->win_h > cub->y_mx ? cub->win_h = --cub->y_mx : 0;
+	mlx_get_screen_size(&cub->w_max, &cub->h_max);
+	if (cub->win_w < 320)
+		cub->win_w = 320;
+	if (cub->win_h < 240)
+		cub->win_h = 240;
+	if (cub->win_w > cub->w_max)
+		cub->win_w = cub->w_max;
+	if (cub->win_h > cub->h_max) 
+		cub->win_h = cub->h_max; //мб на один меньше?
 }
 
 void	ft_record_cub(char *line, t_cub *cub)
 {
-	if (ft_strncmp("R ", line, 2) == 0 && cub->r == -1)
-		ft_get_win_sz(line, cub);
-	if (ft_strncmp("NO ", line, 3) == 0 && !cub->no)
+	if (ft_strncmp("R ", line, 2) == 0 && cub->win_h == -1)
+		ft_get_win_sz(cub, ft_strtrim(line + 1, " "));
+	else if (ft_strncmp("NO ", line, 3) == 0 && !cub->no)
 		cub->no = ft_strtrim(line + 2, " ");
 	else if (ft_strncmp("SO ", line, 3) == 0 && !cub->so)
 		cub->so = ft_strtrim(line + 2, " ");
@@ -99,6 +103,7 @@ void	ft_record_cub(char *line, t_cub *cub)
 		ft_parse_fc(ft_strtrim(line + 1, " "), *line, cub);
 	else
 		ft_lstadd_back(&cub->tmap, ft_lstnew(line));
+	//free(line);
 }
 
 void	ft_check_line(char **line, t_cub *cub)
@@ -122,7 +127,7 @@ void	parse_cub(char *argv, t_cub *cub)
 	//if (n == -1)
 	//	ft_notify_error();
 	ft_check_line(&line, cub);
-	//make_map(cub);
+	make_map(cub);
 	//if (valid_map);
 	//if (!cub->plr)
 	//	ft_notify_error();

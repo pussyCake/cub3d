@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 15:57:32 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/20 19:01:39 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/21 12:15:27 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void		ft_get_direct(t_cub *cub, char c)
 {
 	if (c == 'E')
 		cub->plr->dir = 0;
-	if (c == 'W')
+	else if (c == 'W')
 		cub->plr->dir = M_PI;
-	if (c == 'N')
+	else if (c == 'N')
 		cub->plr->dir = M_PI_2;
-	if (c == 'S')
+	else if (c == 'S')
 		cub->plr->dir = M_PI_2 * 3;
 }
 

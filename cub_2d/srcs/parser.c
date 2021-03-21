@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/16 19:57:22 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/21 18:00:37 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	ft_init_plr(t_cub *cub)
 		i = 0;
 		while (cub->map[j][i])
 		{
-			if (cub->map[j][i] == 'N')
+			if (cub->map[j][i] == 'W')
 			{
-				cub->plr->x = i * SCALE;
-				cub->plr->y = j * SCALE;
+				cub->plr->x = i * SCALE + (SCALE / 2);
+				cub->plr->y = j * SCALE + (SCALE / 2);
 				// cub->plr->x = i;
 				// cub->plr->y = j;
 			}

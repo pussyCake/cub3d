@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/16 21:06:00 by pantigon         ###   ########.fr        #
+#    Updated: 2021/03/21 16:35:34 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,18 @@ FLAG = -Wall -Wextra -Werror
 
 FRAMEWORK = -framework OpenGL -framework AppKit
 
-INCLUDE = -I./include -I./srcs/libft/ -I./srcs/gnl/
+INCLUDE = -I./include -I./srcs/libft/ -I./srcs/gnl/ -I./srcs/mlx/
 
 SRCS =	srcs/main.c\
 		srcs/parser.c\
 		./srcs/gnl/get_next_line.c
 
-SRCS_TEST = test.c ./srcs/gnl/get_next_line.c
+SRCS_TEST = test.c\
+			srcs/main.c\
+			srcs/parser.c\
+			srcs/gnl/get_next_line.c
+
+MLX = ./srcs/mlx/
 
 LIB = ./srcs/libft/
 
@@ -35,16 +40,18 @@ all: $(NAME)
 
 $(NAME):
 	@make -C $(LIB) 
-	gcc $(SRCS) $(INCLUDE) libmlx.dylib $(FRAMEWORK) -g -o $(NAME) $(LIB)libft.a
-	# gcc $(FLAG) -I./minilibx_mms -c main.c -o main.c
-    # gcc -Lmlx -llibmlx $(FRAMEWORK) -o $(NAME)
-	./$(NAME) map/map.cub
+	@make -C $(MLX) 
+	gcc $(SRCS) $(INCLUDE) $(FRAMEWORK) -o $(NAME) $(LIB)libft.a $(MLX)libmlx.a
+	./$(NAME) map/map2.cub
 
-# run: $(NAME)
-# 	./$(NAME) map/map.cub
 
-test:
-	gcc $(SRCS_TEST) $(INCLUDE) -o test ./srcs/libft/libft.9a
+test: t_r
+	@make -C $(LIB) 
+	@make -C $(MLX) 
+	gcc $(SRCS_TEST) $(INCLUDE) $(FRAMEWORK) -o test $(LIB)libft.a $(MLX)libmlx.a
+
+t_r:
+	rm -f test
 
 clean:
 	rm -f $(OBJS)
@@ -54,6 +61,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	@make -C $(LIB) fclean
+	@make clean -C $(MLX)
 
 re: fclean all
 

@@ -47,9 +47,10 @@ typedef struct s_cub
 	t_win		*win;
 	t_plr		*plr;
 	t_list		*tmap;
-	int			r;
 	int			win_w;
 	int			win_h;
+	int			w_max;
+	int			h_max;
 	char		*no;
 	char		*so;
 	char		*we;
