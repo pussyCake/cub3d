@@ -23,6 +23,13 @@
 
 #define SCALE 16
 #define _USE_MATH_DEFINES 
+#define KEY_S 1
+#define KEY_A 0
+#define KEY_D 2
+#define KEY_W 13
+#define KEY_L 123
+#define KEY_R 124
+#define KEY_ESC 53
 
 typedef struct  s_win
 {
@@ -47,6 +54,7 @@ typedef struct s_cub
 	t_win		*win;
 	t_plr		*plr;
 	t_list		*tmap;
+	int			map_h;
 	int			win_w;
 	int			win_h;
 	int			w_max;
@@ -59,6 +67,13 @@ typedef struct s_cub
 	int			f;
 	int			c;
 	char		**map;
+	int			key_w;
+	int			key_s;
+	int			key_a;
+	int			key_d;
+	int			key_left;
+	int			key_right;
+	int			key_esc;
 }				t_cub;
 
 int		create_trgb(int t, int r, int g, int b);

@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 16:05:15 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/21 12:09:45 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/21 19:32:30 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,9 @@
 
 void	ft_init_cub(t_cub *cub)
 {
-	//ft_init_win(cub);
-	//ft_init_plr(cub);
-//	cub->plr->x = -1.0;
- //	cub->plr->y = -1.0;
 	cub->tmap = 0;
 	cub->map = 0;
+	cub->map_h = 0;
 	cub->win_w = -1;
 	cub->win_h = -1;
 	cub->w_max = 0;
@@ -49,4 +46,11 @@ void	ft_init_cub(t_cub *cub)
 	cub->s = 0;
 	cub->f = -1;
 	cub->c = -1;
+	cub->key_w = 0;
+	cub->key_s = 0;
+	cub->key_a = 0;
+	cub->key_d = 0;
+	cub->key_left = 0;
+	cub->key_right = 0;
+	cub->key_esc = 0;
 }

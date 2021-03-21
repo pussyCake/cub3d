@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 15:57:32 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/21 12:15:27 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/21 19:33:03 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ void	ft_make_plr(t_cub *cub)
 void	make_map(t_cub *cub)
 {
 	int		i;
-	int		size;
 	t_list	*tmp;
 
-	size = ft_lstsize(cub->tmap);
-	cub->map = ft_calloc(size + 1, sizeof(char*));
+	cub->map_h = ft_lstsize(cub->tmap);
+	cub->map = ft_calloc(cub->map_h + 1, sizeof(char*));
 	i = 0;
 	//tmp = *head;
 	while (cub->tmap)
