@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/20 16:05:15 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/22 10:57:22 by pantigon         ###   ########.fr       */
+/*   Created: 2021/03/22 10:58:42 by pantigon          #+#    #+#             */
+/*   Updated: 2021/03/22 13:00:33 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	ft_init_cub(t_cub *cub)
+void	ft_notify_error(char *msg)
 {
-	cub->tmap = 0;
-	cub->map = 0;
-	cub->map_h = 0;
-	cub->win_w = -1;
-	cub->win_h = -1;
-	cub->w_max = 0;
-	cub->h_max = 0;
-	cub->no = 0;
-	cub->so = 0;
-	cub->we = 0;
-	cub->ea = 0;
-	cub->s = 0;
-	cub->f = -1;
-	cub->c = -1;
-	cub->key_w = 0;
-	cub->key_s = 0;
-	cub->key_a = 0;
-	cub->key_d = 0;
-	cub->key_left = 0;
-	cub->key_right = 0;
-	cub->key_esc = 0;
+	write(2, "\n", 1);
+	write(2, "\033[1;31mError: \033[1;37m", 22);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	write(2, "\n", 1);
+	exit(1);
 }

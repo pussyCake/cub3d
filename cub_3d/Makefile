@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/21 19:35:02 by pantigon         ###   ########.fr        #
+#    Updated: 2021/03/22 12:54:34 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ SRCS =	srcs/main.c\
 		srcs/init.c\
 		srcs/make_map.c\
 		srcs/parser.c\
+		srcs/control.c\
+		srcs/error.c\
+		srcs/valid.c\
 		./srcs/gnl/get_next_line.c
 
 SRCS_TEST = test.c\
@@ -47,7 +50,7 @@ $(NAME):
 	@make -C $(LIB) 
 	@make -C $(MLX) 
 	gcc $(SRCS) $(INCLUDE) $(FRAMEWORK) -o $(NAME) $(LIB)libft.a $(MLX)libmlx.a
-	./$(NAME) map/map2.cub
+	# ./$(NAME) map/map2.cub
 
 
 test: t_r

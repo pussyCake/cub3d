@@ -6,39 +6,11 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/21 12:14:36 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:24:19 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-// void	ft_check_valid(const char *s, char c, int n, char *err)
-// {
-// 	int i;
-// 	int j;
-// 	int spl;
-
-// 	i = -1;
-// 	while (s && s[++i])
-// 		((s[i] < '0' || s[i] > '9') && s[i] != c)
-// 		? ft_notify_error(err, 22) : 0;
-// 	i = -1;
-// 	j = 0;
-// 	spl = 0;
-// 	while (s[++i] != '\0')
-// 	{
-// 		if (s[i] && s[i] != c)
-// 		{
-// 			while (s[i] && s[i] != c)
-// 				i++;
-// 			i--;
-// 			j++;
-// 		}
-// 		spl += (s[i] == c && c == ',' ? 1 : 0);
-// 	}
-// 	if (j != n || (c == ',' && spl != 2))
-// 		ft_notify_error(err, 22);
-// }
 
 void		ft_parse_fc(char *s, char c, t_cub *cub)
 {
@@ -48,7 +20,8 @@ void		ft_parse_fc(char *s, char c, t_cub *cub)
 	char	*tmp;
 
 	tmp = s;
-	//ft_check_valid(s, ',', 3, "no valid clr!");
+	if (!ft_check_valid(++s, ',', "0123456789,", 3, 2))
+		ft_notify_error("no valid color!!!");
 	r = ft_atoi(s);
 	while (*(s - 1) != ',' && *s != '\0')
 		s++;
@@ -56,8 +29,8 @@ void		ft_parse_fc(char *s, char c, t_cub *cub)
 	while (*s != ',' && *s != '\0')
 		s++;
 	b = ft_atoi(s + 1);
-	//(r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
-	//? ft_notify_error("no valid clr!", 22) : 0;
+	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
+		ft_notify_error("no valid color!");
 	if (c == 'F')
 		cub->f = create_trgb(0, r, g, b);
 	else
@@ -67,13 +40,16 @@ void		ft_parse_fc(char *s, char c, t_cub *cub)
 
 void		ft_get_win_sz(t_cub *cub, char *s)
 {
-	//ft_check_valid(++s, ' ', 2, "No valid screen size");
-	cub->win_w = ft_atoi(s);
-	while (s && *s == ' ' && *s != '\0')
-		s++;
+	if (!ft_check_valid(s, ' ', "0123456789 ", 2, 1))
+		ft_notify_error("no valid screen size!!!");
+	if (!(cub->win_w = ft_atoi(s)))
+		ft_notify_error("no work atoi in get screen size!!!");
 	while (s && *s != ' ' && *s != '\0')
 		s++;
-	cub->win_h = ft_atoi(s);
+	while (s && *s == ' ' && *s != '\0')
+		s++;
+	if (!(cub->win_h = ft_atoi(s)))
+		ft_notify_error("no work atoi in get screen size!!!");
 	mlx_get_screen_size(&cub->w_max, &cub->h_max);
 	if (cub->win_w < 320)
 		cub->win_w = 320;
@@ -87,6 +63,11 @@ void		ft_get_win_sz(t_cub *cub, char *s)
 
 void	ft_record_cub(char *line, t_cub *cub)
 {
+	//char	*tmp;
+	//int		check;
+
+	//tmp = line;
+	//check = 1;
 	if (ft_strncmp("R ", line, 2) == 0 && cub->win_h == -1)
 		ft_get_win_sz(cub, ft_strtrim(line + 1, " "));
 	else if (ft_strncmp("NO ", line, 3) == 0 && !cub->no)
@@ -124,12 +105,14 @@ void	parse_cub(char *argv, t_cub *cub)
 	fd = open(argv, O_RDONLY);
 	while ((n = get_next_line(fd, &line)) > 0)
 		ft_check_line(&line, cub);
-	//if (n == -1)
-	//	ft_notify_error();
+	if (n == -1)
+		ft_notify_error("crash read file\n");
 	ft_check_line(&line, cub);
 	make_map(cub);
-	//if (valid_map);
-	//if (!cub->plr)
+	if (cub->plr->check != 1)
+		ft_notify_error("must be 1 player in map!!!");
+	if (cub->win_h == -1)
+		ft_notify_error("no R in config!!!");
 	//	ft_notify_error();
 	//if (cub)
 }

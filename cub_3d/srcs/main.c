@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/21 20:33:48 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:18:30 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -445,97 +445,13 @@ int		ft_exit(t_win *win)
 	return (0);
 }
 
-int		ft_close(t_cub *cub)
-{
-	mlx_clear_window(cub->win->mlx, cub->win->win);
-	//mlx_destroy_image(cub->win->mlx, cub->win->img);
-	ft_print_black_map(cub, 0x000000);
-	if (cub->key_w == 1)
-	{
-		cub->plr->y += sin(cub->plr->dir) * 4;
-		cub->plr->x -= cos(cub->plr->dir) * 4;
-	}
-	if (cub->key_s == 1)
-	{
-		cub->plr->y -= sin(cub->plr->dir) * 4;
-		cub->plr->x += cos(cub->plr->dir) * 4;
-	}
-	if (cub->key_left == 1)
-	{
-		cub->plr->dir -= 0.05;
-		if (cub->plr->dir < 0)
-			cub->plr->dir += M_PI * 2;
-		if (cub->plr->dir > M_PI * 2)
-			cub->plr->dir -= M_PI * 2;
-	}if (cub->key_right == 1)
-	{
-		cub->plr->dir += 0.05;
-		if (cub->plr->dir > M_PI * 2)
-			cub->plr->dir -= M_PI * 2;
-	}
-	if (cub->key_a == 1)
-	{
-		cub->plr->y += sin(cub->plr->dir + M_PI_2) * 4;
-		cub->plr->x += cos(cub->plr->dir + M_PI_2) * 4;
-	}
-	if (cub->key_d == 1)
-	{
-		cub->plr->y -= sin(cub->plr->dir + M_PI_2) * 4;
-		cub->plr->x -= cos(cub->plr->dir + M_PI_2) * 4;
-	}
-	if (cub->key_esc == 1)
-		exit(0);
-		//mlx_destroy_window(win->mlx, win->win);
-	ft_print_map(cub, 0x808080, 0xfcf5a4);
-	//ft_cast_ray(cub, 0x808080);
-	//ft_print_map(cub, 0xFFFFFF, 0x991199);
-	return (0);
-}
-
-int		key_unpress( int key, t_cub *cub)
-{
-	if (key == KEY_W)
-		cub->key_w = 0;
-	if (key == KEY_S)
-		cub->key_s = 0;
-	if (key == KEY_A)
-		cub->key_a = 0;
-	if (key == KEY_D)
-		cub->key_d = 0;
-	if (key == KEY_L)
-		cub->key_left = 0;
-	if (key == KEY_R)
-		cub->key_right = 0;
-	if (key == KEY_ESC)
-	 	cub->key_w = 0;
-	return (0);
-}
-
-int		key_press( int key, t_cub *cub)
-{
-	if (key == KEY_W)
-		cub->key_w = 1;
-	if (key == KEY_S)
-		cub->key_s = 1;
-	if (key == KEY_A)
-		cub->key_a = 1;
-	if (key == KEY_D)
-		cub->key_d = 1;
-	if (key == KEY_L)
-		cub->key_left = 1;
-	if (key == KEY_R)
-		cub->key_right = 1;
-	if (key == KEY_ESC)
-	 	cub->key_esc = 1;
-	return (0);
-}
-
 int     main(int argc, char **argv)
 {
 	t_cub	cub;
 	t_win	win;
 	t_plr	plr;
-
+// количество строк между картой и конфигом
+// сдвиги в карте
 	cub.plr = &plr;
 	cub.win = &win;
 	parse_cub(argv[1], &cub);
@@ -545,14 +461,29 @@ int     main(int argc, char **argv)
 	cub.win->addr = mlx_get_data_addr(cub.win->img, &cub.win->bits_per_pixel,
 	&cub.win->line_length, &cub.win->endian);
 
-	ft_cast_ray(&cub, 0x808080);
+	//ft_cast_ray(&cub, 0x808080);
 	// //mlx_put_image_to_window(cub.win->mlx, cub.win->win, cub.win->img, 0, 0);
 	
-	//mlx_hook(cub.win->win, 2, 1L<<0, ft_close, &cub);
+	// printf("start\n");
+	// //parse_cub(av[1], &cub);
+	// printf("h:%d\n", cub.win_h);
+	// printf("w:%d\n", cub.win_w);
+	// printf("h_max:%d\n", cub.h_max);
+	// printf("w_max:%d\n", cub.w_max);
+	// printf("%s\n", cub.no);
+	// printf("%s\n", cub.so);
+	// printf("%s\n", cub.we);
+	// printf("%s\n", cub.ea);
+	// printf("%s\n", cub.s);
+	// printf("%d\n", cub.f);
+	// printf("%d\n", cub.c);
+	// printf("stop\n");
+	printf("ВСЕ РАБОТАЕТ!!!\n");
+
 	mlx_hook(cub.win->win, 2, 1L << 1, key_press, &cub);
 	mlx_hook(cub.win->win, 3, 0, key_unpress, &cub);
 	mlx_hook(cub.win->win, 17, 1L<<0, ft_exit, &cub);
-	mlx_loop_hook(cub.win->mlx, ft_close, &cub);
+	//mlx_loop_hook(cub.win->mlx, ft_key_control, &cub);
 	mlx_loop(cub.win->mlx);
 	//printf("%d\n", cub.map[(int)(cub.plr->y / SCALE) - 1][(int)(cub.plr->x / SCALE) - 1]);
 	return (0);

@@ -47,6 +47,7 @@ typedef struct	s_player
 	float			x;
 	float			y;
 	float			dir;
+	int				check;
 }				t_plr;
 
 typedef struct s_cub
@@ -80,5 +81,11 @@ int		create_trgb(int t, int r, int g, int b);
 void	parse_cub(char *argv, t_cub *cub);
 void	make_map(t_cub *cub);
 void	ft_init_cub(t_cub *cub);
+int		key_press( int key, t_cub *cub);
+int		key_unpress( int key, t_cub *cub);
+int		ft_key_control(t_cub *cub);
+void	ft_notify_error(char *msg);
+void	ft_check_map(char *line, int num, t_cub *cub);
+int		ft_check_valid(char *s, char c, char *ch, int num_wrd, int num_c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 15:57:32 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/21 19:33:03 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:22:58 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_make_plr(t_cub *cub)
 	while (cub->map[j])
 	{
 		i = 0;
+		ft_check_map(cub->map[j], j, cub);
 		while (cub->map[j][i])
 		{
 			if (ft_strrchr("NWES", cub->map[j][i]))
@@ -40,9 +41,12 @@ void	ft_make_plr(t_cub *cub)
 				cub->plr->x = i * SCALE + (SCALE / 2);
 				cub->plr->y = j * SCALE + (SCALE / 2);
 				ft_get_direct(cub, cub->map[j][i]);
+				cub->plr->check += 1;
 			}
 			i++;
 		}
+		//if (!ft_check_map(cub->map[j], j))
+		///ft_notify_error("no valid map");
 		j++;
 	}
 }
