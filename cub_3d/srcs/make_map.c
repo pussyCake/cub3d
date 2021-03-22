@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 15:57:32 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/22 14:22:58 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/22 15:13:35 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_make_plr(t_cub *cub)
 	while (cub->map[j])
 	{
 		i = 0;
-		ft_check_map(cub->map[j], j, cub);
+		ft_check_map(cub->map[j - 1], cub->map[j], cub->map[j + 1], j, cub->map_h);
 		while (cub->map[j][i])
 		{
 			if (ft_strrchr("NWES", cub->map[j][i]))

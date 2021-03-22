@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/22 14:24:19 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/22 15:27:58 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,9 @@ void	parse_cub(char *argv, t_cub *cub)
 	if (n == -1)
 		ft_notify_error("crash read file\n");
 	ft_check_line(&line, cub);
+	if (cub->win_h == -1)
+		ft_notify_error("no R in config!!!");
 	make_map(cub);
 	if (cub->plr->check != 1)
 		ft_notify_error("must be 1 player in map!!!");
-	if (cub->win_h == -1)
-		ft_notify_error("no R in config!!!");
-	//	ft_notify_error();
-	//if (cub)
 }
