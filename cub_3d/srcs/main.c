@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/22 14:18:30 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:23:37 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -479,6 +479,7 @@ int     main(int argc, char **argv)
 	// printf("%d\n", cub.c);
 	// printf("stop\n");
 	printf("ВСЕ РАБОТАЕТ!!!\n");
+	//printf("%d\n", cub.map_h);
 
 	mlx_hook(cub.win->win, 2, 1L << 1, key_press, &cub);
 	mlx_hook(cub.win->win, 3, 0, key_unpress, &cub);

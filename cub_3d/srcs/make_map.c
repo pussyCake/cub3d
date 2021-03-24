@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 15:57:32 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/22 15:13:35 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/23 13:25:15 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,8 @@ void	make_map(t_cub *cub)
 			free(cub->tmap->next);
 		cub->tmap = cub->tmap->next;
 	}
+	i = 0;
+	// while (cub->map[i])
+	// 	ft_putendl_fd(cub->map[i++], 1);
 	ft_make_plr(cub);
 }

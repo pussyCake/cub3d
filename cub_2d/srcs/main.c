@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/21 18:23:16 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/21 20:27:54 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,10 @@ float		ft_check_vert_wall(t_cub *cub, t_plr *p)
 	t_plr	new_p;
 	
 	new_p = *p;
-	new_p.x = (int)(new_p.x / SCALE) * SCALE + SCALE;
 	if (cos(new_p.dir) > 0)
-		new_p.x -= SCALE;
+		new_p.x = (int)(new_p.x / SCALE) * SCALE - 1;
+	else
+		new_p.x = (int)(new_p.x / SCALE) * SCALE + SCALE;
 	new_p.y = cub->plr->y - (tan(new_p.dir) * (new_p.x - cub->plr->x));
 	step_x = SCALE;
 	if (cos(new_p.dir) > 0)
@@ -128,8 +129,9 @@ float		ft_check_vert_wall(t_cub *cub, t_plr *p)
 	{
 		new_p.y = new_p.y + step_y;
 		new_p.x = new_p.x + step_x;
-		ft_pp_big(cub->win, new_p.x, new_p.y, 0xFF0000);
+		//ft_pp_big(cub->win, new_p.x, new_p.y, 0xFF0000);
 	}
+	//ft_pp_big(cub->win, new_p.x, new_p.y, 0xFF0000);
 	//ft_pp_big(cub->win, new_p.x, new_p.y, 0xFF0000);
 	return ((sqrt(pow((new_p.x - cub->plr->x), 2) + pow((new_p.y - cub->plr->y), 2))));
 }
@@ -198,13 +200,13 @@ float		ft_check_hor_wall(t_cub *cub, t_plr *p)
 		new_p.y = new_p.y + step_y;
 		new_p.x = new_p.x + step_x;
 		//printf("x:%f--y:%f\n", new_p.x, new_p.y);
-		ft_pp_big(cub->win, new_p.x, new_p.y, 0x00FF00);
+		//ft_pp_big(cub->win, new_p.x, new_p.y, 0x00FF00);
 		//my_mlx_pixel_put(cub->win, new_p.x, new_p.y, 0x00FF00);
 	}
+	//ft_pp_big(cub->win, new_p.x, new_p.y, 0x00FF00);
 	//printf("\n");
 	//ft_pp_big(cub->win, new_p.x, new_p.y, 0x00FF00);
-	return (999999);
-	//return ((sqrt(pow((new_p.x - cub->plr->x), 2) + pow((new_p.y - cub->plr->y), 2))));
+	return ((sqrt(pow((new_p.x - cub->plr->x), 2) + pow((new_p.y - cub->plr->y), 2))));
 }
 
 float		ft_check_wall(t_cub *cub, float ray)
@@ -231,19 +233,65 @@ float		ft_check_wall(t_cub *cub, float ray)
 	return (len_vert);
  }
 
+typedef struct s_line
+{
+   t_plr      coordinate;
+   float     length;
+   float     angle;
+}           t_line;
+
+void    put_line(t_win *img_data, t_line *line, int color)
+{
+   t_plr p2;
+   int tmp;
+   int delta;
+   float k;
+   float x_projection;
+   float y_projection;
+   x_projection = fabs(line->length * cosf(line->angle));
+   y_projection = fabs(line->length * sinf(line->angle));
+   k = tanf(line->angle);
+   p2.x = line->coordinate.x + line->length * cosf(line->angle);
+   p2.y = line->coordinate.y - line->length * sinf(line->angle);
+   delta = 1;
+   if (x_projection > y_projection)
+   {
+      tmp = (int)line->coordinate.x;
+      if (p2.x < line->coordinate.x)
+         delta = -1;
+      while (fabs((float)tmp - line->coordinate.x) < x_projection)
+      {
+         my_mlx_pixel_put(img_data, tmp, (int)(line->coordinate.y - (fabs((float)tmp) - line->coordinate.x) * k), color);
+         tmp += delta;
+      }
+   }
+   else
+   {
+      tmp = (int)line->coordinate.y;
+      if (p2.y < line->coordinate.y)
+         delta = -1;
+      while (fabs((float)tmp - line->coordinate.y) < y_projection)
+      {
+         my_mlx_pixel_put(img_data, (int)(line->coordinate.x - ((float)tmp - line->coordinate.y) / k), tmp, color);
+         tmp += delta;
+      }
+   }
+}
+
 void	ft_cast_ray(t_cub *cub, int col)
 {
 	float	start;
 	float	end;
 	float		len;
 	int		i;
-	t_plr	ray = *cub->plr; 
+	t_plr	ray = *cub->plr;
+	t_line	line; 
 
 	i = 0;
-	// start = ray.dir - M_PI / 6;
-	// end = ray.dir + M_PI / 6;
-	// while (start < end)
-	// {
+	start = ray.dir - M_PI;
+	end = ray.dir + M_PI;
+	while (start < end)
+	{
 	// 	// ray.x = cub->plr->x;
 		// ray.y = cub->plr->y;
 		// while (cub->map[(int)(ray.y / SCALE)][(int)(ray.x / SCALE)] != '1')
@@ -256,16 +304,19 @@ void	ft_cast_ray(t_cub *cub, int col)
 		// len = sqrt(pow((ray.x - cub->plr->x), 2) + pow((ray.y - cub->plr->y), 2));
 		//len = sqrt(pow((cub->plr->x - ray.x), 2) + pow((cub->plr->y - ray.y), 2));
 		//len = fabsf(((ray.x - cub->plr->x) / cos(start)));
-		len = ft_check_wall(cub, ray.dir);
-		printf("-%f-\n", len);
-		ft_pp_big(cub->win, ray.x, ray.y, 0x0000FF);
+		len = ft_check_wall(cub, start);
+		line.coordinate.x = cub->plr->x;
+		line.coordinate.y = cub->plr->y;
+		line.length = len;
+		line.angle = start;
+		put_line(cub->win, &line, 0xFF0000);
 		// while (len-- > 0)
 		// 	my_mlx_pixel_put(cub->win, ray.x, ray.y, col);
-		//len = len * cos(ray.dir - start);
+		len = len * cos(ray.dir - start);
 		//ft_print_column(cub, (int)len, i++, col);
-		//start += (M_PI / 3) / 600;
+		start += 2 * M_PI / 600;
 		mlx_put_image_to_window(cub->win->mlx, cub->win->win, cub->win->img, 0, 0);
-	//}
+	}
 }
 
 void	ft_print_map(t_cub *cub, int col, int col_plr)

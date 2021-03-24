@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/22 15:27:58 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/23 13:50:08 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,17 @@ void		ft_get_win_sz(t_cub *cub, char *s)
 		cub->win_h = cub->h_max; //мб на один меньше?
 }
 
+//  int		ft_record_map(t_cub *cub, char **line)
+// {
+// 	if ( line)
+// }
+
 void	ft_record_cub(char *line, t_cub *cub)
 {
-	//char	*tmp;
+	char	*tmp;
 	//int		check;
 
-	//tmp = line;
-	//check = 1;
+	
 	if (ft_strncmp("R ", line, 2) == 0 && cub->win_h == -1)
 		ft_get_win_sz(cub, ft_strtrim(line + 1, " "));
 	else if (ft_strncmp("NO ", line, 3) == 0 && !cub->no)
@@ -86,6 +90,15 @@ void	ft_record_cub(char *line, t_cub *cub)
 		ft_lstadd_back(&cub->tmap, ft_lstnew(line));
 	//free(line);
 }
+
+// void	ft_check_line(char **line, t_cub *cub)
+// {
+// 	if (**line != '\0' || **line != '\n')
+// 		ft_record_cub(*line, cub);                // нужно ли чистить лайн?
+// 	else
+// 		free(line);
+// }
+
 
 void	ft_check_line(char **line, t_cub *cub)
 {
@@ -106,10 +119,9 @@ void	parse_cub(char *argv, t_cub *cub)
 	while ((n = get_next_line(fd, &line)) > 0)
 		ft_check_line(&line, cub);
 	if (n == -1)
-		ft_notify_error("crash read file\n");
+		ft_notify_error("crash read file");
 	ft_check_line(&line, cub);
-	if (cub->win_h == -1)
-		ft_notify_error("no R in config!!!");
+	ft_check_all_conf(cub);
 	make_map(cub);
 	if (cub->plr->check != 1)
 		ft_notify_error("must be 1 player in map!!!");

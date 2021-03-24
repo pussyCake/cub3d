@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/19 12:43:23 by pantigon         ###   ########.fr        #
+#    Updated: 2021/03/24 05:00:02 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,19 @@ FRAMEWORK = -framework OpenGL -framework AppKit
 INCLUDE = -I./include -I./srcs/libft/ -I./srcs/gnl/ -I./srcs/mlx/
 
 SRCS =	srcs/main.c\
+		srcs/img.c\
+		srcs/init.c\
+		srcs/make_map.c\
 		srcs/parser.c\
+		srcs/control.c\
+		srcs/error.c\
+		srcs/valid.c\
 		./srcs/gnl/get_next_line.c
 
-SRCS_TEST = test.c ./srcs/gnl/get_next_line.c
+SRCS_TEST = srcs/main.c\
+			srcs/parser.c\
+			srcs/error.c\
+			srcs/gnl/get_next_line.c
 
 MLX = ./srcs/mlx/
 
@@ -39,12 +48,16 @@ $(NAME):
 	@make -C $(LIB) 
 	@make -C $(MLX) 
 	gcc $(SRCS) $(INCLUDE) $(FRAMEWORK) -o $(NAME) $(LIB)libft.a $(MLX)libmlx.a
-	./$(NAME) map/map.cub
+	# ./$(NAME) map/map2.cub
 
 
-test:
-	gcc $(SRCS_TEST) $(INCLUDE) -o test ./srcs/libft/libft.a
+test: t_r
+	@make -C $(LIB) 
+	#@make -C $(MLX) 
+	gcc $(SRCS_TEST) $(INCLUDE)  -o test $(LIB)libft.a 
 
+t_r:
+	rm -f test
 
 clean:
 	rm -f $(OBJS)
