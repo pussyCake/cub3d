@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/24 05:15:50 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/03/24 17:26:02 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		main(int argc, char **argv)
 		ft_notify_error("MUST BE 2 or 3 ARGUMENTS", &cub);
 	if (argc == 3)
 		ft_check_save(&cub, argc, argv[2]);
-	ft_parse_file(&cub, argv[1]);
+	ft_init_param(&cub, argv[1]);
 
 	// if ((info.error = init_var(&info, argv[1])) != SUCCESS)
 	// 	return (re_errors(info.error, &info));
