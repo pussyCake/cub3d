@@ -101,6 +101,7 @@ typedef struct s_cub
 	t_list		*tmap;
 	t_rc		rc;
 	t_param		param;
+	int			flag_n;
 	int			flag_save;
 	int			map_h;
 	int			win_w;
@@ -131,7 +132,10 @@ void	ft_notify_error_param(char *msg, t_cub *cub, char *s);
 void	ft_init_param(t_cub *cub, char *file);
 void	ft_open_file(t_cub *cub, char *file);
 void	ft_check_number_param(t_cub *cub);
+void	ft_check_path(t_cub *cub);
 void	ft_get_param(t_cub *cub, char *line, int i, int *flag_map);
+void	ft_check_map(t_cub *cub);
+void	ft_valid_map(t_cub *cub);
 
 // int		create_trgb(int t, int r, int g, int b);
 // void	parse_cub(char *argv, t_cub *cub);
