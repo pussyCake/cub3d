@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_parameters.c                                  :+:      :+:    :+:   */
+/*   param_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:12:13 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/24 17:14:41 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/02 13:22:51 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	ft_init_peram(t_cub *cub, char *file)
+void	ft_init_param(t_cub *cub, char *file)
 {
 	cub->rc.speed = 0.05;
 	

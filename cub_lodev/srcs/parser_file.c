@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/24 17:56:17 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/02 13:30:45 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_read_file(t_cub *cub, int fd)
 		free(line);
 	}
 	ft_check_number_param(cub);
-	ft_check_path(cub);
+	//ft_check_path(cub);
 	
 
 

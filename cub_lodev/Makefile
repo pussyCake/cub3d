@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/24 05:00:02 by pantigon         ###   ########.fr        #
+#    Updated: 2021/04/02 13:11:46 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,11 @@ SRCS =	srcs/main.c\
 		./srcs/gnl/get_next_line.c
 
 SRCS_TEST = srcs/main.c\
-			srcs/parser.c\
+			srcs/parser_file.c\
 			srcs/error.c\
+			srcs/param_check.c\
+			srcs/param_get.c\
+			srcs/param_init.c\
 			srcs/gnl/get_next_line.c
 
 MLX = ./srcs/mlx/

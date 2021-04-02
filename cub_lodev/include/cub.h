@@ -127,7 +127,11 @@ typedef struct s_cub
 void	ft_parse_file(t_cub *cub, char *file);
 void	ft_notify_error(char *msg, t_cub *cub);
 void	ft_notify_error_param(char *msg, t_cub *cub, char *s);
-void	ft_params(char **str, char *s, char *line, t_cub *cub);
+//void	ft_params(char **str, char *s, char *line, t_cub *cub);
+void	ft_init_param(t_cub *cub, char *file);
+void	ft_open_file(t_cub *cub, char *file);
+void	ft_check_number_param(t_cub *cub);
+void	ft_get_param(t_cub *cub, char *line, int i, int *flag_map);
 
 // int		create_trgb(int t, int r, int g, int b);
 // void	parse_cub(char *argv, t_cub *cub);
