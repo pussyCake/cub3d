@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:28:41 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/02 17:02:43 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/15 15:09:28 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_skip_space(t_cub *cub, int y, int *x)
 	}
 }
 
-static int	ft_parse(t_cub *cub, int y, int *x)
+void	ft_parse(t_cub *cub, int y, int *x)
 {
 	if (x == 0)
 		ft_skip_space(cub, y, x);
@@ -53,7 +53,8 @@ static int	ft_parse(t_cub *cub, int y, int *x)
 	if ((ft_strchr("0NSEW", cub->map[y][*x])) && y != 0 &&
 	y != cub->map_h && *x != 0)
 		ft_check_inmap(cub, y, *x);
-			
+	//printf("%d:%d\n", y, *x);
+	//ft_putendl_fd("START", 0);
 }
 
 void	ft_valid_map(t_cub *cub)
@@ -66,12 +67,15 @@ void	ft_valid_map(t_cub *cub)
 	while (y < cub->map_h)
 	{
 //		start_x = x;
+		//ft_putendl_fd("START", 0);
 		x = 0;
 		while (cub->map[y][x])
 		{
 			ft_parse(cub, y, &x);
 			x++;
+			//printf("%c", cub->map[y][x]);
 		}
+		//printf("\n");
 		y++;
 	}
 }

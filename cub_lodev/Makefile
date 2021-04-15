@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/04/02 17:10:27 by pantigon         ###   ########.fr        #
+#    Updated: 2021/04/15 14:16:42 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,19 @@ FRAMEWORK = -framework OpenGL -framework AppKit
 INCLUDE = -I./include -I./srcs/libft/ -I./srcs/gnl/ -I./srcs/mlx/
 
 SRCS =	srcs/main.c\
-		srcs/img.c\
-		srcs/init.c\
-		srcs/make_map.c\
-		srcs/parser.c\
-		srcs/control.c\
+		srcs/colour.c\
+		srcs/parser_file.c\
 		srcs/error.c\
-		srcs/valid.c\
-		./srcs/gnl/get_next_line.c
+		srcs/free.c\
+		srcs/resolution.c\
+		srcs/utils.c\
+		srcs/param_check.c\
+		srcs/param_get.c\
+		srcs/map.c\
+		srcs/valid_map.c\
+		srcs/param_init.c\
+		srcs/param_path.c\
+		srcs/gnl/get_next_line.c
 
 SRCS_TEST = srcs/main.c\
 			srcs/parser_file.c\
@@ -67,7 +72,7 @@ t_r:
 
 clean:
 	rm -f $(OBJS)
-#	rm -rf $(O_DIR)
+	rm -rf $(O_DIR)
 	@make -C $(LIB) clean
 
 fclean: clean

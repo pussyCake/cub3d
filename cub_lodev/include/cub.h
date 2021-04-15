@@ -31,30 +31,47 @@
 #define KEY_R 124
 #define KEY_ESC 53
 
-typedef struct  s_win
+typedef struct  s_img
 {
-	void		*mlx;
-	void		*win;
     void        *img;
     char        *addr;
-    int         bits_per_pixel;
+    int         bpp;
     int         line_length;
     int         endian;
-}               t_win;
+	int			width;
+	int			height;
+}               t_img;
+
+typedef struct				s_coloure
+{
+	unsigned char			t;
+	unsigned char			r;
+	unsigned char			g;
+	unsigned char			b;
+	int						f;
+	int						c;
+}							t_coloure;
 
 typedef struct	s_player
 {
+	char			plr;
 	float			x;
 	float			y;
 	float			dir;
-	int				check;
+	//int				check;
 }				t_plr;
+
+typedef struct				s_pos
+{
+	double					x;
+	double					y;
+}							t_pos;
 
 typedef struct				s_rc
 {
-	// t_pos					plane;
+	t_pos					plane;
 	// t_pos					step;
-	// t_pos					dir;
+	t_pos					dir;
 	// t_pos_i					textur;
 	// t_pos					rpos;
 	// t_pos					rdir;
@@ -96,25 +113,34 @@ typedef struct				s_param
 
 typedef struct s_cub
 {
-	t_win		*win;
-	t_plr		*plr;
+	void		*mlx;
+	void		*win;
+	t_img		*img;
+	t_img		*text_n;
+	t_img		*text_s;
+	t_img		*text_e;
+	t_img		*text_w;
+	t_img		*text_sp;
+	t_plr		plr;
 	t_list		*tmap;
 	t_rc		rc;
 	t_param		param;
-	int			flag_n;
+	t_coloure	col;
+	int			place_char;
+	int			num_sprite;
+	int			flag_plr;
 	int			flag_save;
 	int			map_h;
+	int			h_total;
 	int			win_w;
 	int			win_h;
 	int			w_max;
 	int			h_max;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		*s;
-	int			f;
-	int			c;
+	// char		*no;
+	// char		*so;
+	// char		*we;
+	// char		*ea;
+	// char		*s;
 	char		**map;
 	int			key_w;
 	int			key_s;
@@ -125,17 +151,24 @@ typedef struct s_cub
 	int			key_esc;
 }				t_cub;
 
-void	ft_parse_file(t_cub *cub, char *file);
+void	ft_init_param(t_cub *cub, char *file);
+void    ft_get_coloure(t_cub *cub, char *s, char c);
+void    ft_check_buff(char *buff, t_cub *cub);
 void	ft_notify_error(char *msg, t_cub *cub);
 void	ft_notify_error_param(char *msg, t_cub *cub, char *s);
-//void	ft_params(char **str, char *s, char *line, t_cub *cub);
-void	ft_init_param(t_cub *cub, char *file);
-void	ft_open_file(t_cub *cub, char *file);
-void	ft_check_number_param(t_cub *cub);
-void	ft_check_path(t_cub *cub);
-void	ft_get_param(t_cub *cub, char *line, int i, int *flag_map);
+int		ft_exit(t_cub *cub);
+void	ft_del_buff(void **buff);
 void	ft_check_map(t_cub *cub);
+void	ft_check_number_param(t_cub *cub);
+void	ft_get_param(t_cub *cub, char *line, int i, int *flag_map);
+void	ft_check_path(t_cub *cub);
+void	ft_open_file(t_cub *cub, char *file);
+void    ft_get_resolution(t_cub *cub);
+t_img	*ft_create_text(t_cub *cub, char *add);
+t_img   *ft_new_image(t_cub *cub);
 void	ft_valid_map(t_cub *cub);
+void    ft_ckeck_isalpha(char *s, int i, t_cub *cub);
+int ft_size_buff(char **buff);
 
 // int		create_trgb(int t, int r, int g, int b);
 // void	parse_cub(char *argv, t_cub *cub);
