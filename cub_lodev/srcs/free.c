@@ -12,6 +12,16 @@
 
 #include "cub.h"
 
+void	ft_free_img(t_cub *cub)
+{
+	if (cub->img)
+	{
+		mlx_destroy_image(cub->mlx, cub->img->img);
+		free(cub->img);
+		cub->img = NULL;
+	}
+}
+
 void	ft_del_buff(void **buff)
 {
 	int i;

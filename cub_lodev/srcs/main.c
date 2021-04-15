@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/15 16:04:54 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/15 16:13:26 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,14 @@ int		main(int argc, char **argv)
 	if (argc == 3)
 		ft_check_save(&cub, argc, argv[2]);
 	ft_init_param(&cub, argv[1]);
-
-	// if ((info.error = init_var(&info, argv[1])) != SUCCESS)
-	// 	return (re_errors(info.error, &info));
+	ft_hook(&cub);
 	// if (info.flag_save == 1)
 	// {
 	// 	if ((info.error = launch_save(&info)) != SUCCESS)
 	// 		return (re_errors(info.error, &info));
 	// 	return (SUCCESS);
 	// }
+	
 	// if ((info.error = events(&info)) != SUCCESS)
 	// 	return (re_errors(info.error, &info));
 	// return (SUCCESS);

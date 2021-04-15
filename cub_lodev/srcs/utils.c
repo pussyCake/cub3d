@@ -12,6 +12,14 @@
 
 #include "cub.h"
 
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+{
+    char	*dst;
+
+    dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
+    *(int *)dst = color;
+}
+
 t_img	*ft_create_text(t_cub *cub, char *add)
 {
 	t_img *texture;

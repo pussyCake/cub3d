@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/04/15 14:16:42 by pantigon         ###   ########.fr        #
+#    Updated: 2021/04/15 17:38:55 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,9 @@ SRCS =	srcs/main.c\
 		srcs/valid_map.c\
 		srcs/param_init.c\
 		srcs/param_path.c\
+		srcs/hook.c\
+		srcs/raycast.c\
+		srcs/control.c\
 		srcs/gnl/get_next_line.c
 
 SRCS_TEST = srcs/main.c\

@@ -23,12 +23,17 @@
 
 #define SCALE 16
 #define _USE_MATH_DEFINES 
+
 #define KEY_S 1
 #define KEY_A 0
 #define KEY_D 2
 #define KEY_W 13
+
+#define KEY_UP 126
+#define KEY_DW 125
 #define KEY_L 123
 #define KEY_R 124
+
 #define KEY_ESC 53
 
 typedef struct  s_img
@@ -55,29 +60,29 @@ typedef struct				s_coloure
 typedef struct	s_player
 {
 	char			plr;
-	float			x;
-	float			y;
-	float			dir;
+	double			x;
+	double			y;
+	//float			dir;
 	//int				check;
 }				t_plr;
 
-typedef struct				s_pos
-{
-	double					x;
-	double					y;
-}							t_pos;
+// typedef struct				s_pos
+// {
+// 	double					x;
+// 	double					y;
+// }							t_pos;
 
 typedef struct				s_rc
 {
-	t_pos					plane;
-	// t_pos					step;
-	t_pos					dir;
+	t_plr					plane;
+	t_pos					step;
+	t_plr					dir;
 	// t_pos_i					textur;
-	// t_pos					rpos;
-	// t_pos					rdir;
-	// t_pos					rdisd;
-	// t_pos					rdist;
-	// t_pos_i					rmap;
+	t_pos					rpos;
+	t_pos					rdir;
+	t_pos					rdisd;
+	t_pos					rdist;
+	t_pos_i					rmap;
 	int						wall;
 	int						wstart;
 	int						wend;
@@ -169,6 +174,10 @@ t_img   *ft_new_image(t_cub *cub);
 void	ft_valid_map(t_cub *cub);
 void    ft_ckeck_isalpha(char *s, int i, t_cub *cub);
 int ft_size_buff(char **buff);
+void	ft_hook(t_cub *cub);
+void	ft_free_img(t_cub *cub);
+void	ft_control(t_cub *cub);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 // int		create_trgb(int t, int r, int g, int b);
 // void	parse_cub(char *argv, t_cub *cub);
