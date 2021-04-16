@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:12:13 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/16 15:23:30 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/16 17:18:37 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,7 @@ void	ft_init_param(t_cub *cub, char *file)
 	ft_get_coloure(cub, cub->param.c, 'C');
 	ft_get_resolution(cub);
 	ft_init_for_start(cub);
-	
-	// if (!(info->rc.zbuffer = malloc(sizeof(double) * cub->win_w)))
-	// 	ft_notify_error("fail malloc", cub);
-	
+	if (!(cub->rc.zbuff = malloc(sizeof(double) * cub->win_w)))
+		ft_notify_error("fail malloc", cub);
 	//ft_init_texture(cub);
 }

@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:13:35 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/16 16:44:50 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/16 17:42:18 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int	ft_loop_game(t_cub *cub)
 		ft_notify_error("fail in create img", cub);
 	ft_control(cub);
 	ft_create_world(cub);
-	ft_print_map(cub, 0xFFFFFF, 0xFF00FF);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img->img, 0, 0);
 	return (0);
 }

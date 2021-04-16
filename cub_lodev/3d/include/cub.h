@@ -55,13 +55,14 @@ typedef struct				s_coloure
 	unsigned char			b;
 	int						f;
 	int						c;
+	int						text;
 }							t_coloure;
 
 typedef struct	s_player
 {
 	char			plr;
 	double			x;
-	double			y;
+	double			y;			
 	//float			dir;
 	//int				check;
 }				t_plr;
@@ -72,39 +73,58 @@ typedef struct	s_player
 // 	double					y;
 // }							t_pos;
 
-typedef struct				s_pos_i
+typedef struct				s_point
 {
 	int						x;
 	int						y;
 	int						id;
-}							t_pos_i;
+}							t_point;
 
 typedef struct				s_rc
 {
 	t_plr					plane;
 	t_plr					step;
 	t_plr					dir;
-	// t_pos_i					textur;
+	t_point					text;
 	t_plr					rpos;
 	t_plr					rdir;
 	t_plr					rdisd;
 	t_plr					rdist;
-	t_pos_i					rmap;
+	t_point					rmap;
 	int						wall;
 	int						wstart;
 	int						wend;
 	double					camera;
 	int						hit;
 	double					rh;
-	double					step_textur;
-	double					textur_pos;
+	double					step_text;
+	double					text_pos;
 	double					dist;
 	double					speed;
-	double					*zbuffer;
+	double					*zbuff;
 	int						*sp_order;
 	double					*sp_distance;
 
 }							t_rc;
+
+typedef struct				s_sprite
+{
+	double					sp_dist;
+	double					spcamx;
+	double					spcamy;
+	double					transx;
+	double					transy;
+	int						spritescreenx;
+	int						sprite_height;
+	int						drawstart_y;
+	int						drawend_y;
+	int						sprite_width;
+	int						drawstart_x;
+	int						drawend_x;
+	int						stripe;
+	int						x;
+	int						y;
+}							t_sprite;
 
 typedef struct				s_param
 {
@@ -118,7 +138,7 @@ typedef struct				s_param
 	char					*ea;
 	char					*e;
 	char					*spr;
-	char					*sp;
+	char					*sprtsp;
 	char					*f;
 	char					*c;
 }							t_param;
@@ -138,6 +158,8 @@ typedef struct s_cub
 	t_rc		rc;
 	t_param		param;
 	t_coloure	col;
+	t_sprite	sprt;
+	t_plr		*sprt_plc;
 	int			place_char;
 	int			num_sprite;
 	int			flag_plr;
@@ -186,6 +208,8 @@ void	ft_free_img(t_cub *cub);
 void	ft_control(t_cub *cub);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	ft_create_world(t_cub *cub);
+void	ft_texture(t_cub *cub);
+void	ft_get_pixel(t_cub *cub, int x);
 
 
 void	ft_print_map(t_cub *cub, int col, int col_plr);

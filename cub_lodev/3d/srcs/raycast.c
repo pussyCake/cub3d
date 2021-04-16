@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:27:28 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/16 16:44:44 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/16 17:43:51 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	ft_raylen(t_cub *cub)
 	cub->rc.wend = cub->rc.rh / 2 + cub->win_h / 2;
 	if (cub->rc.wend >= cub->win_h)
 		cub->rc.wend = cub->win_h - 1;
-	//cub->rc.textur.id = (cub->map.tab_map[cub->rc.rmap.y]
-	//[cub->rc.rmap.x] - '0') - 1;
+	cub->rc.text.id = (cub->map[cub->rc.rmap.y][cub->rc.rmap.x] - '0') - 1;
 }
 
 void	ft_check_hit(t_cub *cub)
@@ -111,6 +110,10 @@ void	ft_create_world(t_cub *cub)
 		ft_dir_ray(cub);
 		ft_check_hit(cub);
 		ft_raylen(cub);
+		ft_texture(cub);
+		ft_get_pixel(cub, x);
+		cub->rc.zbuff[x] = cub->rc.dist;
+		ft_make_spr(cub);
 		x++;
 	}
 }
