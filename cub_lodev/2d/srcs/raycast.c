@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:27:28 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/15 17:54:15 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/16 16:44:44 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ void	ft_create_world(t_cub *cub)
 		ft_dir_ray(cub);
 		ft_check_hit(cub);
 		ft_raylen(cub);
+		x++;
 	}
 }

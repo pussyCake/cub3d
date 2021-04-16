@@ -72,16 +72,23 @@ typedef struct	s_player
 // 	double					y;
 // }							t_pos;
 
+typedef struct				s_pos_i
+{
+	int						x;
+	int						y;
+	int						id;
+}							t_pos_i;
+
 typedef struct				s_rc
 {
 	t_plr					plane;
-	t_pos					step;
+	t_plr					step;
 	t_plr					dir;
 	// t_pos_i					textur;
-	t_pos					rpos;
-	t_pos					rdir;
-	t_pos					rdisd;
-	t_pos					rdist;
+	t_plr					rpos;
+	t_plr					rdir;
+	t_plr					rdisd;
+	t_plr					rdist;
 	t_pos_i					rmap;
 	int						wall;
 	int						wstart;
@@ -178,6 +185,11 @@ void	ft_hook(t_cub *cub);
 void	ft_free_img(t_cub *cub);
 void	ft_control(t_cub *cub);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	ft_create_world(t_cub *cub);
+
+
+void	ft_print_map(t_cub *cub, int col, int col_plr);
+void	ft_p_big(t_cub *cub, int x, int y, int col);
 
 // int		create_trgb(int t, int r, int g, int b);
 // void	parse_cub(char *argv, t_cub *cub);

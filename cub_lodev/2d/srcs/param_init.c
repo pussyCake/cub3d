@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:12:13 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/15 15:43:28 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/16 15:23:30 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	ft_init_for_start(t_cub *cub)
 {
 	if (!(cub->mlx = mlx_init()))
 		ft_notify_error("fail mlx", cub);
-	cub->img = ft_new_image(cub);
+	 if (!(cub->win = mlx_new_window(cub->mlx, cub->win_w, cub->win_h, "GAME")))
+	 	ft_notify_error("fail mlx (create win)", cub);
+	//cub->img = ft_new_image(cub);
 	ft_init_plr(cub);
 }
 
