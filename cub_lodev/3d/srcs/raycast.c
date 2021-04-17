@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:27:28 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 19:15:25 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 22:48:19 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	ft_raylen(t_cub *cub)
 	else
 		cub->rc.wall_dist = (cub->rc.map.y - cub->rc.ray.y
 				+ (1 - cub->rc.step.y) / 2) / cub->rc.ray_dir.y;
-	cub->rc.wall_h = cub->win_h / cub->rc.wall_dist;
-	cub->rc.h_start = ((-cub->rc.wall_h) / 2) + (cub->win_h / 2);
+	cub->rc.wall_h = (cub->win_h / cub->rc.wall_dist);
+	cub->rc.h_start = (-cub->rc.wall_h) / 2 + cub->win_h / 2;
 	if (cub->rc.h_start < 0)
 		cub->rc.h_start = 0;
 	cub->rc.h_end = cub->rc.wall_h / 2 + cub->win_h / 2;
 	if (cub->rc.h_end >= cub->win_h)
 		cub->rc.h_end = cub->win_h - 1;
-//	cub->rc.text.id = (cub->map[cub->rc.map.y][cub->rc.map.x] - '0') - 1;
+	cub->rc.text.id = (cub->map[cub->rc.map.y][cub->rc.map.x] - '0') - 1;
 }
 
 void	ft_check_hit(t_cub *cub)
@@ -113,7 +113,7 @@ void	ft_create_world(t_cub *cub)
 		ft_texture(cub);
 		ft_get_pixel(cub, x);
 	//	cub->rc.zbuff[x] = cub->rc.wall_dist;
-	//	ft_make_spr(cub);
+		//ft_make_spr(cub);
 		x++;
 	}
 }

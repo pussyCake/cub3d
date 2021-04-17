@@ -6,7 +6,7 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 13:15:05 by pantigon          #+#    #+#              #
-#    Updated: 2021/04/17 18:09:39 by pantigon         ###   ########.fr        #
+#    Updated: 2021/04/17 22:49:04 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,8 @@ SRCS =	srcs/main.c\
 		srcs/pixel.c\
 		srcs/gnl/get_next_line.c
 
-#	srcs/sprite.c\
-#	srcs/sprite_second.c\
+#srcs/sprite.c\
+//		srcs/sprite_second.c\
 
 SRCS_TEST = srcs/main.c\
 			srcs/parser_file.c\

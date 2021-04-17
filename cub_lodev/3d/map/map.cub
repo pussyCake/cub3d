@@ -1,11 +1,11 @@
-R 600 500
+R 600 400
 NO ./texture/wall/4.xpm
 SO ./texture/wall/5.xpm
 WE ./texture/wall/6.xpm
-EA ./texture/wall/7.xpm
+EA ./texture/wall/8.xpm
 S ./texture/sprite/438.bmp
-F 123,145,123
-C 104,104,227
+F 0,0,255
+C 0, 0, 255
 
 
         1111111111111111111111111

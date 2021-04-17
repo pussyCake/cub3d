@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:13:35 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 18:38:48 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 21:03:38 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	ft_loop_game(t_cub *cub)
 
 void	ft_hook(t_cub *cub)
 {
-	// if (!(cub->win = mlx_new_window(cub->mlx, cub->win_w, cub->win_h, "GAME")))
-	// 	ft_notify_error("fail mlx (create win)", cub);
+	if (!(cub->win = mlx_new_window(cub->mlx, cub->win_w, cub->win_h, "GAME")))
+		ft_notify_error("fail mlx (create win)", cub);
 	mlx_hook(cub->win, 2, 1L << 1, key_press, cub);
 	mlx_hook(cub->win, 3, 0, key_unpress, cub);
 	mlx_hook(cub->win, 17, 1L << 0, ft_exit, cub);

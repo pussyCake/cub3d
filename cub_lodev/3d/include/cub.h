@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 18:35:47 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 22:48:44 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include "mlx.h"
 # include "get_next_line.h"
 
-# define SCALE 16
 # define _USE_MATH_DEFINES 
 
 # define KEY_S 1
@@ -38,7 +37,7 @@
 typedef struct s_img
 {
 	void		*img;
-	char		*addr;
+	int			*addr;
 	int			bpp;
 	int			line_length;
 	int			endian;
@@ -46,15 +45,19 @@ typedef struct s_img
 	int			height;
 }				t_img;
 
-typedef struct s_coloure
+typedef struct s_trgb
 {
-	unsigned char	t;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	int				f;
-	int				c;
-	int				text;
+	unsigned char	t;
+}				t_trgb;
+
+typedef union u_coloure
+{
+	unsigned int	all;
+	char			tab[4];
+	t_trgb			trgb;
 }				t_coloure;
 
 typedef struct s_player
@@ -148,9 +151,11 @@ typedef struct s_cub
 	t_list		*tmap;
 	t_rc		rc;
 	t_param		param;
-	t_coloure	col;
+	t_coloure	col_f;
+	t_coloure	col_c;
 	t_sprite	sprt;
 	t_plr		*sprt_plc;
+	int			col_text;
 	int			place_char;
 	int			num_sprite;
 	int			flag_plr;
@@ -172,7 +177,7 @@ typedef struct s_cub
 }				t_cub;
 
 void	ft_init_param(t_cub *cub, char *file);
-void	ft_get_coloure(t_cub *cub, char *s, char c);
+void	ft_get_coloure(t_coloure *col, char *s, t_cub *cub);
 void	ft_check_buff(char *buff, t_cub *cub);
 void	ft_notify_error(char *msg, t_cub *cub);
 void	ft_notify_error_param(char *msg, t_cub *cub, char *s);
@@ -199,5 +204,6 @@ void	ft_get_pixel(t_cub *cub, int x);
 void	ft_del_data(t_cub *cub);
 void	ft_del_text(t_cub *cub, t_img *text);
 void	ft_del_img(t_cub *cub);
+//void	ft_make_spr(t_cub *cub);
 
 #endif

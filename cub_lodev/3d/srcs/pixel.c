@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 17:20:18 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 18:08:29 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 22:00:45 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pixel_textur(t_img *text, t_cub *cub)
 {
-	cub->col.text = text->addr[64
+	cub->col_text = text->addr[64
 		* cub->rc.text.y + cub->rc.text.x];
 }
 
@@ -43,16 +43,18 @@ void	ft_get_pixel(t_cub *cub, int x)
 	int	y;
 
 	y = 0;
+	printf("%d\n", cub->rc.h_start);
+	printf("%d\n", cub->rc.h_end);
 	while (y < cub->rc.h_start)
-		ft_get_pixel_col(cub, cub->col.c, x, y++);
+		ft_get_pixel_col(cub, cub->col_c.all, x, y++);
 	while (y >= cub->rc.h_start && y <= cub->rc.h_end)
 	{
 		cub->rc.text.y = (int)cub->rc.text_pos & (64 - 1);
 		cub->rc.text_pos += cub->rc.step_text;
 		ft_get_col_text(cub);
-		ft_get_pixel_col(cub, cub->col.text, x, y);
+		ft_get_pixel_col(cub, cub->col_text, x, y);
 		y++;
 	}
 	while (y < cub->win_h)
-		ft_get_pixel_col(cub, cub->col.f, x, y++);
+		ft_get_pixel_col(cub, cub->col_f.all, x, y++);
 }

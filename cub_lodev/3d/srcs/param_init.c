@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:12:13 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 19:07:21 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 21:03:09 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	ft_init_for_start(t_cub *cub)
 	cub->mlx = mlx_init();
 	if (!(cub->mlx))
 		ft_notify_error("fail mlx", cub);
-	cub->win = mlx_new_window(cub->mlx, cub->win_w, cub->win_h, "GAME");
-	if (!(cub->win))
-		ft_notify_error("fail mlx (create win)", cub);
-	//cub->img = ft_new_image(cub);
+	// cub->win = mlx_new_window(cub->mlx, cub->win_w, cub->win_h, "GAME");
+	// if (!(cub->win))
+	// 	ft_notify_error("fail mlx (create win)", cub);
+	cub->img = ft_new_image(cub);
 	ft_init_plr(cub);
 }
 
@@ -72,8 +72,8 @@ void	ft_init_param(t_cub *cub, char *file)
 	cub->rc.speed = 0.05;
 	ft_open_file(cub, file);
 	ft_check_map(cub);
-	ft_get_coloure(cub, cub->param.f, 'F');
-	ft_get_coloure(cub, cub->param.c, 'C');
+	ft_get_coloure(&cub->col_f, cub->param.f, cub);
+	ft_get_coloure(&cub->col_c, cub->param.c, cub);
 	ft_get_resolution(cub);
 	ft_init_for_start(cub);
 	cub->rc.zbuff = malloc(sizeof(double) * cub->win_w);
