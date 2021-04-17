@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:23:20 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 13:56:48 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 18:07:18 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ft_place_plr(t_cub *cub, int y, int x)
 		cub->map[y][x] = '0';
 	}
 	if (cub->map[y][x] == '2')
-		cub->num_sprite++;
+		cub->map[y][x] = '1';
+		//cub->num_sprite++;
 }
 
 void	ft_novalid_sym(t_cub *cub, int y, int x)

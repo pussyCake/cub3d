@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:27:28 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 14:31:33 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 19:15:25 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,88 +14,88 @@
 
 void	ft_raylen(t_cub *cub)
 {
-	if (cub->rc.wall == 0 || cub->rc.wall == 2)
-		cub->rc.dist = (cub->rc.rmap.x - cub->rc.rpos.x
-				+ (1 - cub->rc.step.x) / 2) / cub->rc.rdir.x;
+	if (cub->rc.side == 0 || cub->rc.side == 2)
+		cub->rc.wall_dist = (cub->rc.map.x - cub->rc.ray.x
+				+ (1 - cub->rc.step.x) / 2) / cub->rc.ray_dir.x;
 	else
-		cub->rc.dist = (cub->rc.rmap.y - cub->rc.rpos.y
-				+ (1 - cub->rc.step.y) / 2) / cub->rc.rdir.y;
-	cub->rc.rh = ((cub->win_h / cub->rc.dist));
-	cub->rc.wstart = ((-cub->rc.rh)) / 2 + cub->win_h / 2;
-	if (cub->rc.wstart < 0)
-		cub->rc.wstart = 0;
-	cub->rc.wend = cub->rc.rh / 2 + cub->win_h / 2;
-	if (cub->rc.wend >= cub->win_h)
-		cub->rc.wend = cub->win_h - 1;
-	cub->rc.text.id = (cub->map[cub->rc.rmap.y][cub->rc.rmap.x] - '0') - 1;
+		cub->rc.wall_dist = (cub->rc.map.y - cub->rc.ray.y
+				+ (1 - cub->rc.step.y) / 2) / cub->rc.ray_dir.y;
+	cub->rc.wall_h = cub->win_h / cub->rc.wall_dist;
+	cub->rc.h_start = ((-cub->rc.wall_h) / 2) + (cub->win_h / 2);
+	if (cub->rc.h_start < 0)
+		cub->rc.h_start = 0;
+	cub->rc.h_end = cub->rc.wall_h / 2 + cub->win_h / 2;
+	if (cub->rc.h_end >= cub->win_h)
+		cub->rc.h_end = cub->win_h - 1;
+//	cub->rc.text.id = (cub->map[cub->rc.map.y][cub->rc.map.x] - '0') - 1;
 }
 
 void	ft_check_hit(t_cub *cub)
 {
 	while (cub->rc.hit == 0)
 	{
-		if (cub->rc.rdist.x < cub->rc.rdist.y)
+		if (cub->rc.side_dist.x < cub->rc.side_dist.y)
 		{
-			cub->rc.rdist.x += cub->rc.rdisd.x;
-			cub->rc.rmap.x += cub->rc.step.x;
-			if (cub->rc.rdir.x < 0)
-				cub->rc.wall = 0;
+			cub->rc.side_dist.x += cub->rc.del_dist.x;
+			cub->rc.map.x += cub->rc.step.x;
+			if (cub->rc.ray_dir.x < 0)
+				cub->rc.side = 0;
 			else
-				cub->rc.wall = 2;
+				cub->rc.side = 2;
 		}
 		else
 		{
-			cub->rc.rdist.y += cub->rc.rdisd.y;
-			cub->rc.rmap.y += cub->rc.step.y;
-			if (cub->rc.rdir.y < 0)
-				cub->rc.wall = 1;
+			cub->rc.side_dist.y += cub->rc.del_dist.y;
+			cub->rc.map.y += cub->rc.step.y;
+			if (cub->rc.ray_dir.y < 0)
+				cub->rc.side = 1;
 			else
-				cub->rc.wall = 3;
+				cub->rc.side = 3;
 		}
-		if (ft_strchr("1", cub->map[cub->rc.rmap.y][cub->rc.rmap.x]))
+		if (ft_strchr("1", cub->map[cub->rc.map.y][cub->rc.map.x]))
 			cub->rc.hit = 1;
 	}
 }
 
 void	ft_dir_ray(t_cub *cub)
 {
-	if (cub->rc.rdir.x < 0)
+	if (cub->rc.ray_dir.x < 0)
 	{
 		cub->rc.step.x = -1;
-		cub->rc.rdist.x = (cub->rc.rpos.x - cub->rc.rmap.x)
-			* cub->rc.rdisd.x;
+		cub->rc.side_dist.x = (cub->rc.ray.x - cub->rc.map.x)
+			* cub->rc.del_dist.x;
 	}
 	else
 	{
 		cub->rc.step.x = 1;
-		cub->rc.rdist.x = (cub->rc.rmap.x + 1.0 - cub->rc.rpos.x)
-			* cub->rc.rdisd.x;
+		cub->rc.side_dist.x = (cub->rc.map.x + 1.0 - cub->rc.ray.x)
+			* cub->rc.del_dist.x;
 	}
-	if (cub->rc.rdir.y < 0)
+	if (cub->rc.ray_dir.y < 0)
 	{
 		cub->rc.step.y = -1;
-		cub->rc.rdist.y = (cub->rc.rpos.y - cub->rc.rmap.y)
-			* cub->rc.rdisd.y;
+		cub->rc.side_dist.y = (cub->rc.ray.y - cub->rc.map.y)
+			* cub->rc.del_dist.y;
 	}
 	else
 	{
 		cub->rc.step.y = 1;
-		cub->rc.rdist.y = (cub->rc.rmap.y + 1.0 - cub->rc.rpos.y)
-			* cub->rc.rdisd.y;
+		cub->rc.side_dist.y = (cub->rc.map.y + 1.0 - cub->rc.ray.y)
+			* cub->rc.del_dist.y;
 	}
 }
 
 void	ft_init_ray(t_cub *cub, int x)
 {
-	cub->rc.camera = 2 * x / (double)(cub->win_w) - 1;
-	cub->rc.rpos.x = cub->plr.x;
-	cub->rc.rpos.y = cub->plr.y;
-	cub->rc.rdir.x = cub->rc.dir.x + cub->rc.plane.x * cub->rc.camera;
-	cub->rc.rdir.y = cub->rc.dir.y + cub->rc.plane.y * cub->rc.camera;
-	cub->rc.rmap.x = (int)cub->rc.rpos.x;
-	cub->rc.rmap.y = (int)cub->rc.rpos.y;
-	cub->rc.rdisd.x = fabs(1 / cub->rc.rdir.x);
-	cub->rc.rdisd.y = fabs(1 / cub->rc.rdir.y);
+	cub->rc.cam_x = 2 * x / (double)(cub->win_w) - 1;
+	cub->rc.ray.x = cub->plr.x;
+	cub->rc.ray.y = cub->plr.y;
+	cub->rc.ray_dir.x = cub->rc.dir.x + cub->rc.plane.x * cub->rc.cam_x;
+	cub->rc.ray_dir.y = cub->rc.dir.y + cub->rc.plane.y * cub->rc.cam_x;
+	cub->rc.map.x = (int)cub->rc.ray.x;
+	cub->rc.map.y = (int)cub->rc.ray.y;
+	cub->rc.del_dist.x = fabs(1 / cub->rc.ray_dir.x);
+	cub->rc.del_dist.y = fabs(1 / cub->rc.ray_dir.y);
 	cub->rc.hit = 0;
 }
 
@@ -112,8 +112,8 @@ void	ft_create_world(t_cub *cub)
 		ft_raylen(cub);
 		ft_texture(cub);
 		ft_get_pixel(cub, x);
-		cub->rc.zbuff[x] = cub->rc.dist;
-		ft_make_spr(cub);
+	//	cub->rc.zbuff[x] = cub->rc.wall_dist;
+	//	ft_make_spr(cub);
 		x++;
 	}
 }

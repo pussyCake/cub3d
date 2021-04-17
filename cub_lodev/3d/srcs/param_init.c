@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:12:13 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 14:13:21 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 19:07:21 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	ft_init_texture(t_cub *cub)
 {
 	cub->text_n = ft_create_text(cub, cub->param.no);
 	if ((cub->text_n) == NULL)
-		ft_notify_error("fail in texture", cub);
+		ft_notify_error("fail in texture NO", cub);
 	cub->text_s = ft_create_text(cub, cub->param.so);
 	if ((cub->text_s) == NULL)
-		ft_notify_error("fail in texture", cub);
+		ft_notify_error("fail in texture SO", cub);
 	cub->text_w = ft_create_text(cub, cub->param.we);
 	if ((cub->text_w) == NULL)
-		ft_notify_error("fail in texture", cub);
+		ft_notify_error("fail in texture WE", cub);
 	cub->text_e = ft_create_text(cub, cub->param.ea);
 	if ((cub->text_e) == NULL)
-		ft_notify_error("fail in texture", cub);
-	cub->text_sp = ft_create_text(cub, cub->param.spr);
-	if ((cub->text_sp) == NULL)
-		ft_notify_error("fail in texture", cub);
+		ft_notify_error("fail in texture EA", cub);
+	// cub->text_sp = ft_create_text(cub, cub->param.spr);
+	// if ((cub->text_sp) == NULL)
+	// 	ft_notify_error("fail in texture SPRITE", cub);
 }
 
 void	ft_init_plr(t_cub *cub)
@@ -79,5 +79,5 @@ void	ft_init_param(t_cub *cub, char *file)
 	cub->rc.zbuff = malloc(sizeof(double) * cub->win_w);
 	if (!(cub->rc.zbuff))
 		ft_notify_error("fail malloc", cub);
-	//ft_init_texture(cub);
+	ft_init_texture(cub);
 }

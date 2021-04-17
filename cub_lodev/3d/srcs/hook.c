@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:13:35 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 13:55:22 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 18:38:48 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,51 +48,9 @@ int	key_press( int key, t_cub *cub)
 	return (0);
 }
 
-// void	ft_p_big(t_cub *cub, int x, int y, int col)
-// {
-// 	int x_start;
-// 	int y_start;
-// 	int scale;
-
-// 	scale = 16;
-// 	y = y * scale;
-// 	x = x * scale;
-// 	x_start = x;
-// 	y_start = y;
-// 	while ((y++ < y_start + scale))
-// 	{
-// 		x = x_start;
-// 		while (x++ < x_start + scale)
-// 			my_mlx_pixel_put(cub->img, x, y, col);
-// 	}
-// }
-
-// void	ft_print_map(t_cub *cub, int col, int col_plr)
-// {
-// 	int i;
-// 	int j;
-
-// 	j = 0;
-// 	while (cub->map[j])
-// 	{
-// 		i = 0;
-// 		while (cub->map[j][i])
-// 		{
-// 			//my_mlx_pixel_put(cub->win, i * 16, j * 16, 0xFFFFFF);
-// 			if (cub->map[j][i] == '1')
-// 				ft_p_big(cub, i, j, col);
-// 			i++;
-// 		}
-// 		j++;
-// 	}
-// 	//ft_cast_ray(cub, col_plr);
-// 	ft_p_big(cub, cub->plr.x, cub->plr.y, col_plr);
-// 	//mlx_put_image_to_window(cub->mlx, cub->win, cub->img->img, 0, 0);
-// }
-
 int	ft_loop_game(t_cub *cub)
 {
-	ft_free_img(cub);
+	ft_del_img(cub);
 	cub->img = ft_new_image(cub);
 	if (!cub->img)
 		ft_notify_error("fail in create img", cub);

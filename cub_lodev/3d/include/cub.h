@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 13:57:48 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 18:35:47 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,7 @@ typedef struct s_player
 	char	plr;
 	double	x;
 	double	y;			
-	//float			dir;
-	//int				check;
 }				t_plr;
-
-// typedef struct				s_pos
-// {
-// 	double					x;
-// 	double					y;
-// }							t_pos;
 
 typedef struct s_point
 {
@@ -85,20 +77,20 @@ typedef struct s_rc
 	t_plr	step;
 	t_plr	dir;
 	t_point	text;
-	t_plr	rpos;
-	t_plr	rdir;
-	t_plr	rdisd;
-	t_plr	rdist;
-	t_point	rmap;
-	int		wall;
-	int		wstart;
-	int		wend;
-	double	camera;
+	t_plr	ray;
+	t_plr	ray_dir;
+	t_plr	del_dist;
+	t_plr	side_dist;
+	t_point	map;
+	int		side;
+	int		h_start;
+	int		h_end;
+	double	cam_x;
 	int		hit;
-	double	rh;
+	double	wall_h;
 	double	step_text;
 	double	text_pos;
-	double	dist;
+	double	wall_dist;
 	double	speed;
 	double	*zbuff;
 	int		*sp_order;
@@ -169,11 +161,6 @@ typedef struct s_cub
 	int			win_h;
 	int			w_max;
 	int			h_max;
-	// char		*no;
-	// char		*so;
-	// char		*we;
-	// char		*ea;
-	// char		*s;
 	char		**map;
 	int			key_w;
 	int			key_s;
@@ -209,19 +196,8 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	ft_create_world(t_cub *cub);
 void	ft_texture(t_cub *cub);
 void	ft_get_pixel(t_cub *cub, int x);
-
-// void	ft_print_map(t_cub *cub, int col, int col_plr);
-// void	ft_p_big(t_cub *cub, int x, int y, int col);
-
-// int		create_trgb(int t, int r, int g, int b);
-// void	parse_cub(char *argv, t_cub *cub);
-// void	make_map(t_cub *cub);
-// void	ft_init_cub(t_cub *cub);
-// int		key_press( int key, t_cub *cub);
-// int		key_unpress( int key, t_cub *cub);
-// int		ft_key_control(t_cub *cub);
-// void	ft_check_all_conf(t_cub *cub);
-// void	ft_check_map(char *l_pre, char *l_now, char *l_nxt, int num, int lst);
-// int		ft_check_valid(char *s, char c, char *ch, int num_wrd, int num_c);
+void	ft_del_data(t_cub *cub);
+void	ft_del_text(t_cub *cub, t_img *text);
+void	ft_del_img(t_cub *cub);
 
 #endif

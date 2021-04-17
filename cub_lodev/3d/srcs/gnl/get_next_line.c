@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 14:51:44 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 15:29:14 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 18:18:38 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,37 +71,42 @@ char	*get_line(char *box)
 	return (line);
 }
 
-int	ft_join(char **buff, char **box, int byte)
-{
-	if (byte == -1)
-	{
-		free(*buff);
-		return (-1);
-	}
-	else
-	{
-		*buff[byte] = '\0';
-		*box = ft_strjoin(*box, *buff);
-		if (!(*box))
-			return (-1);
-	}
-	return (0);
-}
+// int	ft_join(char **buff, char **box, int byte)
+// {
+// 	if (byte == -1)
+// 	{
+// 		free(*buff);
+// 		return (-1);
+// 	}
+// 	else
+// 	{
+// 		*buff[byte] = '\0';
+// 		*box = ft_strjoin(*box, *buff);
+// 		if (!(*box))
+// 			return (-1);
+// 	}
+// 	return (0);
+// }
 
-int	get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
 	char			*buff;
 	int				byte;
 	static char		*box;
 
 	byte = 1;
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (fd < 0 || !line || !buff)
+	if (fd < 0 || !line || BUFFER_SIZE <= 0 || \
+	!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
 	while ((!box || (box && !(ft_strchr(box, '\n')))) && byte != 0)
 	{
-		byte = read(fd, buff, BUFFER_SIZE);
-		if (ft_join(&buff, &box, byte) == -1)
+		if ((byte = read(fd, buff, BUFFER_SIZE)) == -1)
+		{
+			free(buff);
+			return (-1);
+		}
+		buff[byte] = '\0';
+		if (!(box = ft_strjoin(box, buff)))
 			return (-1);
 	}
 	free(buff);
@@ -111,3 +116,4 @@ int	get_next_line(int fd, char **line)
 		return (0);
 	return (1);
 }
+

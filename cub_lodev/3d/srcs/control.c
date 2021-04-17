@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 16:48:55 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 13:50:41 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 19:08:40 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ void	ft_control(t_cub *cub)
 		ft_view(cub, 1);
 	if (cub->key_right == 1)
 		ft_view(cub, -1);
-	printf("%f : %f\n", cub->plr.x, cub->plr.y);
+	//printf("%f : %f\n", cub->plr.x, cub->plr.y);
 }
