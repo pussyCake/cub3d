@@ -14,37 +14,43 @@
 
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
-    char	*dst;
+	char	*dst;
 
-    dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
-    *(int *)dst = color;
+	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
+	*(int *)dst = color;
 }
 
 t_img	*ft_create_text(t_cub *cub, char *add)
 {
-	t_img *texture;
+	t_img	*texture;
 
-	if (!(texture = malloc(sizeof(t_img))))
+	texture = malloc(sizeof(t_img));
+	if (!(texture))
 		return (NULL);
-	if (!(texture->img = mlx_xpm_file_to_image(cub->mlx, add,
-		&texture->width, &texture->height)))
+	texture->img = mlx_xpm_file_to_image(cub->mlx, add, &texture->width,
+			&texture->height);
+	if (!(texture->img))
 		return (NULL);
-	if (!(texture->addr = mlx_get_data_addr(texture->img,
-		&texture->bpp, &texture->line_length, &texture->endian)))
+	texture->addr = mlx_get_data_addr(texture->img,
+			&texture->bpp, &texture->line_length, &texture->endian);
+	if (!(texture->addr))
 		return (NULL);
 	return (texture);
 }
 
-t_img   *ft_new_image(t_cub *cub)
+t_img	*ft_new_image(t_cub *cub)
 {
-	t_img *img;
+	t_img	*img;
 
-	if (!(img = malloc(sizeof(t_img))))
+	img = malloc(sizeof(t_img));
+	if (!(img))
 		ft_notify_error("img fail", cub);
-	if (!(img->img = mlx_new_image(cub->mlx, cub->win_w, cub->win_h)))
+	img->img = mlx_new_image(cub->mlx, cub->win_w, cub->win_h);
+	if (!(img->img))
 		ft_notify_error("img fail", cub);
-	if (!(img->addr = mlx_get_data_addr(img->img, &img->bpp,
-		&img->line_length, &img->endian)))
+	img->addr = mlx_get_data_addr(img->img, &img->bpp,
+			&img->line_length, &img->endian);
+	if (!(img->addr))
 		ft_notify_error("img fail", cub);
 	img->width = cub->win_w;
 	img->height = cub->win_h;

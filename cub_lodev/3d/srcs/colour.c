@@ -12,15 +12,15 @@
 
 #include "cub.h"
 
-int			create_trgb(int t, int r, int g, int b)
+int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void    ft_check_buff(char *buff, t_cub *cub)
+void	ft_check_buff(char *buff, t_cub *cub)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	i = 0;
 	size = ft_strlen(buff);
@@ -36,9 +36,9 @@ void    ft_check_buff(char *buff, t_cub *cub)
 	}
 }
 
-void    ft_check_coloure(char **buff, t_cub *cub)
+void	ft_check_coloure(char **buff, t_cub *cub)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (ft_size_buff(buff) == 3)
@@ -54,14 +54,14 @@ void    ft_check_coloure(char **buff, t_cub *cub)
 		ft_del_buff((void **)buff);
 		ft_notify_error("fail in coloure", cub);
 	}
-    // if (!cub->col.r || !cub->col.g || !cub->col.b)
-	// 	ft_notify_error("fail malloc in coloure", cub);
+    //if (!cub->col.r || !cub->col.g || !cub->col.b)
+	//	ft_notify_error("fail malloc in coloure", cub);
 	if (cub->col.r > 255 || cub->col.r < 0 || cub->col.g > 255
-    || cub->col.g < 0 || cub->col.b > 255 || cub->col.b < 0)
+		|| cub->col.g < 0 || cub->col.b > 255 || cub->col.b < 0)
 		ft_notify_error("fail in coloure", cub);
 }
 
-void    ft_get_coloure(t_cub *cub, char *s, char c)
+void	ft_get_coloure(t_cub *cub, char *s, char c)
 {
 	int		i;
 	char	**buff;
@@ -70,11 +70,12 @@ void    ft_get_coloure(t_cub *cub, char *s, char c)
 	while (!ft_isdigit(s[i]) && s[i] != '-')
 		i++;
 	ft_ckeck_isalpha(s, i, cub);
-	if (!(buff = ft_split(s + i, ',')))
+	buff = ft_split((s + i), ',');
+	if (!(buff))
 		ft_notify_error("fail malloc in colour", cub);
 	ft_check_coloure(buff, cub);
 	ft_del_buff((void **)buff);
-    if (c == 'F')
+	if (c == 'F')
 		cub->col.f = create_trgb(0, cub->col.r, cub->col.g, cub->col.b);
 	else
 		cub->col.c = create_trgb(0, cub->col.r, cub->col.g, cub->col.b);

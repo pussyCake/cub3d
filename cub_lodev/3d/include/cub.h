@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,62 +6,62 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/18 12:33:39 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 13:57:48 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
-#define CUB_H
-#include <stdio.h>
-#include <fcntl.h>
-#include <math.h>
-#include <stdlib.h>
-#include "libft.h"
-#include "mlx.h"
-#include "get_next_line.h"
+# define	CUB_H
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include "libft.h"
+# include "mlx.h"
+# include "get_next_line.h"
 
-#define SCALE 16
-#define _USE_MATH_DEFINES 
+# define SCALE 16
+# define _USE_MATH_DEFINES 
 
-#define KEY_S 1
-#define KEY_A 0
-#define KEY_D 2
-#define KEY_W 13
+# define KEY_S 1
+# define KEY_A 0
+# define KEY_D 2
+# define KEY_W 13
 
-#define KEY_UP 126
-#define KEY_DW 125
-#define KEY_L 123
-#define KEY_R 124
+# define KEY_UP 126
+# define KEY_DW 125
+# define KEY_L 123
+# define KEY_R 124
 
-#define KEY_ESC 53
+# define KEY_ESC 53
 
-typedef struct  s_img
+typedef struct s_img
 {
-    void        *img;
-    char        *addr;
-    int         bpp;
-    int         line_length;
-    int         endian;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
 	int			width;
 	int			height;
-}               t_img;
+}				t_img;
 
-typedef struct				s_coloure
+typedef struct s_coloure
 {
-	unsigned char			t;
-	unsigned char			r;
-	unsigned char			g;
-	unsigned char			b;
-	int						f;
-	int						c;
-	int						text;
-}							t_coloure;
+	unsigned char	t;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	int				f;
+	int				c;
+	int				text;
+}				t_coloure;
 
-typedef struct	s_player
+typedef struct s_player
 {
-	char			plr;
-	double			x;
-	double			y;			
+	char	plr;
+	double	x;
+	double	y;			
 	//float			dir;
 	//int				check;
 }				t_plr;
@@ -73,75 +72,75 @@ typedef struct	s_player
 // 	double					y;
 // }							t_pos;
 
-typedef struct				s_point
+typedef struct s_point
 {
-	int						x;
-	int						y;
-	int						id;
-}							t_point;
+	int	x;
+	int	y;
+	int	id;
+}				t_point;
 
-typedef struct				s_rc
+typedef struct s_rc
 {
-	t_plr					plane;
-	t_plr					step;
-	t_plr					dir;
-	t_point					text;
-	t_plr					rpos;
-	t_plr					rdir;
-	t_plr					rdisd;
-	t_plr					rdist;
-	t_point					rmap;
-	int						wall;
-	int						wstart;
-	int						wend;
-	double					camera;
-	int						hit;
-	double					rh;
-	double					step_text;
-	double					text_pos;
-	double					dist;
-	double					speed;
-	double					*zbuff;
-	int						*sp_order;
-	double					*sp_distance;
+	t_plr	plane;
+	t_plr	step;
+	t_plr	dir;
+	t_point	text;
+	t_plr	rpos;
+	t_plr	rdir;
+	t_plr	rdisd;
+	t_plr	rdist;
+	t_point	rmap;
+	int		wall;
+	int		wstart;
+	int		wend;
+	double	camera;
+	int		hit;
+	double	rh;
+	double	step_text;
+	double	text_pos;
+	double	dist;
+	double	speed;
+	double	*zbuff;
+	int		*sp_order;
+	double	*sp_distance;
 
-}							t_rc;
+}				t_rc;
 
-typedef struct				s_sprite
+typedef struct s_sprite
 {
-	double					sp_dist;
-	double					spcamx;
-	double					spcamy;
-	double					transx;
-	double					transy;
-	int						spritescreenx;
-	int						sprite_height;
-	int						drawstart_y;
-	int						drawend_y;
-	int						sprite_width;
-	int						drawstart_x;
-	int						drawend_x;
-	int						stripe;
-	int						x;
-	int						y;
-}							t_sprite;
+	double	sp_dist;
+	double	spcamx;
+	double	spcamy;
+	double	transx;
+	double	transy;
+	int		spritescreenx;
+	int		sprite_height;
+	int		drawstart_y;
+	int		drawend_y;
+	int		sprite_width;
+	int		drawstart_x;
+	int		drawend_x;
+	int		stripe;
+	int		x;
+	int		y;
+}				t_sprite;
 
-typedef struct				s_param
+typedef struct s_param
 {
-	char					*r;
-	char					*no;
-	char					*n;
-	char					*so;
-	char					*s;
-	char					*we;
-	char					*w;
-	char					*ea;
-	char					*e;
-	char					*spr;
-	char					*sprtsp;
-	char					*f;
-	char					*c;
-}							t_param;
+	char	*r;
+	char	*no;
+	char	*n;
+	char	*so;
+	char	*s;
+	char	*we;
+	char	*w;
+	char	*ea;
+	char	*e;
+	char	*spr;
+	char	*sp;
+	char	*f;
+	char	*c;
+}				t_param;
 
 typedef struct s_cub
 {
@@ -186,8 +185,8 @@ typedef struct s_cub
 }				t_cub;
 
 void	ft_init_param(t_cub *cub, char *file);
-void    ft_get_coloure(t_cub *cub, char *s, char c);
-void    ft_check_buff(char *buff, t_cub *cub);
+void	ft_get_coloure(t_cub *cub, char *s, char c);
+void	ft_check_buff(char *buff, t_cub *cub);
 void	ft_notify_error(char *msg, t_cub *cub);
 void	ft_notify_error_param(char *msg, t_cub *cub, char *s);
 int		ft_exit(t_cub *cub);
@@ -197,12 +196,12 @@ void	ft_check_number_param(t_cub *cub);
 void	ft_get_param(t_cub *cub, char *line, int i, int *flag_map);
 void	ft_check_path(t_cub *cub);
 void	ft_open_file(t_cub *cub, char *file);
-void    ft_get_resolution(t_cub *cub);
+void	ft_get_resolution(t_cub *cub);
 t_img	*ft_create_text(t_cub *cub, char *add);
-t_img   *ft_new_image(t_cub *cub);
+t_img	*ft_new_image(t_cub *cub);
 void	ft_valid_map(t_cub *cub);
-void    ft_ckeck_isalpha(char *s, int i, t_cub *cub);
-int ft_size_buff(char **buff);
+void	ft_ckeck_isalpha(char *s, int i, t_cub *cub);
+int		ft_size_buff(char **buff);
 void	ft_hook(t_cub *cub);
 void	ft_free_img(t_cub *cub);
 void	ft_control(t_cub *cub);
@@ -211,9 +210,8 @@ void	ft_create_world(t_cub *cub);
 void	ft_texture(t_cub *cub);
 void	ft_get_pixel(t_cub *cub, int x);
 
-
-void	ft_print_map(t_cub *cub, int col, int col_plr);
-void	ft_p_big(t_cub *cub, int x, int y, int col);
+// void	ft_print_map(t_cub *cub, int col, int col_plr);
+// void	ft_p_big(t_cub *cub, int x, int y, int col);
 
 // int		create_trgb(int t, int r, int g, int b);
 // void	parse_cub(char *argv, t_cub *cub);

@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 14:51:44 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/09 14:50:34 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 15:29:14 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	if ((sum = (char*)malloc(sizeof(char) * (len + 1))) == NULL)
+	sum = (char *)malloc(sizeof(char) * (len + 1));
+	if (sum == NULL)
 		return (NULL);
 	ft_memmove(sum, s1, ft_strlen(s1));
 	ft_memmove(sum + ft_strlen(s1), s2, ft_strlen(s2));
@@ -37,7 +38,8 @@ char	*new_box(char *box)
 
 	if (!box)
 		return (0);
-	if (!(n = ft_strchr(box, '\n')))
+	n = ft_strchr(box, '\n');
+	if (!n)
 	{
 		free(box);
 		return (0);
@@ -57,7 +59,8 @@ char	*get_line(char *box)
 	i = 0;
 	if (!box)
 		return (0);
-	if ((n = ft_strchr(box, '\n')))
+	n = ft_strchr(box, '\n');
+	if (n)
 	{
 		*n = '\0';
 		line = ft_strdup(box);
@@ -68,25 +71,37 @@ char	*get_line(char *box)
 	return (line);
 }
 
-int		get_next_line(int fd, char **line)
+int	ft_join(char **buff, char **box, int byte)
+{
+	if (byte == -1)
+	{
+		free(*buff);
+		return (-1);
+	}
+	else
+	{
+		*buff[byte] = '\0';
+		*box = ft_strjoin(*box, *buff);
+		if (!(*box))
+			return (-1);
+	}
+	return (0);
+}
+
+int	get_next_line(int fd, char **line)
 {
 	char			*buff;
 	int				byte;
 	static char		*box;
 
 	byte = 1;
-	if (fd < 0 || !line || BUFFER_SIZE <= 0 || \
-	!(buff = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (fd < 0 || !line || !buff)
 		return (-1);
 	while ((!box || (box && !(ft_strchr(box, '\n')))) && byte != 0)
 	{
-		if ((byte = read(fd, buff, BUFFER_SIZE)) == -1)
-		{
-			free(buff);
-			return (-1);
-		}
-		buff[byte] = '\0';
-		if (!(box = ft_strjoin(box, buff)))
+		byte = read(fd, buff, BUFFER_SIZE);
+		if (ft_join(&buff, &box, byte) == -1)
 			return (-1);
 	}
 	free(buff);

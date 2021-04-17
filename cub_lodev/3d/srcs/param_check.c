@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:10:58 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/15 13:57:43 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:02:04 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	ft_check_rgb(char *s, int i, t_cub *cub)
 
 void	ft_check_fc(char *color, t_cub *cub)
 {
-	int i;
-	int num;
+	int	i;
+	int	num;
 
 	i = 1;
 	num = 0;
 	while (color[i])
 	{
-		if (!ft_isdigit(color[i]) &&
-		(color[i] != ' ') && (color[i] != ','))
+		if (!ft_isdigit(color[i])
+			&& (color[i] != ' ') && (color[i] != ','))
 			ft_notify_error("not valid symbol in color", cub);
 		if (ft_isdigit(color[i]))
 			num = 1;
@@ -49,11 +49,11 @@ void	ft_check_fc(char *color, t_cub *cub)
 
 void	ft_check_number_param(t_cub *cub)
 {
-	int i;
+	int	i;
 
 	if (!cub->param.r || !cub->param.n || !cub->param.s || !cub->param.w
-	|| !cub->param.e || !cub->param.sp || !cub->param.f || !cub->param.c
-	|| !cub->tmap)
+		|| !cub->param.e || !cub->param.sp || !cub->param.f || !cub->param.c
+		|| !cub->tmap)
 		ft_notify_error("INVALID PARAMS or MAP", cub);
 	i = 1;
 	while (cub->param.r[i])

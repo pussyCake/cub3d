@@ -24,7 +24,7 @@ void	ft_free_img(t_cub *cub)
 
 void	ft_del_buff(void **buff)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (buff)

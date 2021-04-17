@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 17:24:56 by pantigon          #+#    #+#             */
-/*   Updated: 2020/11/03 19:51:52 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:56:12 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	*ft_calloc(size_t num, size_t size)
 	size_t	max;
 
 	max = num * size;
-	if ((arr = malloc(max)) == NULL)
+	arr = malloc(max);
+	if (arr == NULL)
 		return (NULL);
 	ft_bzero(arr, max);
 	return (arr);

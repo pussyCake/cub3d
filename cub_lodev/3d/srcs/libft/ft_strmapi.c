@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 13:38:56 by pantigon          #+#    #+#             */
-/*   Updated: 2020/11/04 13:59:46 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 15:04:04 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (s == NULL)
 		return (NULL);
-	if ((str = ft_strdup(s)) == NULL)
+	str = ft_strdup(s);
+	if (str == NULL)
 		return (NULL);
 	i = 0;
 	while (s[i])

@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:27:28 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/16 17:43:51 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:31:33 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	ft_raylen(t_cub *cub)
 {
 	if (cub->rc.wall == 0 || cub->rc.wall == 2)
 		cub->rc.dist = (cub->rc.rmap.x - cub->rc.rpos.x
-					+ (1 - cub->rc.step.x) / 2) / cub->rc.rdir.x;
+				+ (1 - cub->rc.step.x) / 2) / cub->rc.rdir.x;
 	else
 		cub->rc.dist = (cub->rc.rmap.y - cub->rc.rpos.y
-					+ (1 - cub->rc.step.y) / 2) / cub->rc.rdir.y;
+				+ (1 - cub->rc.step.y) / 2) / cub->rc.rdir.y;
 	cub->rc.rh = ((cub->win_h / cub->rc.dist));
 	cub->rc.wstart = ((-cub->rc.rh)) / 2 + cub->win_h / 2;
 	if (cub->rc.wstart < 0)
@@ -62,26 +62,26 @@ void	ft_dir_ray(t_cub *cub)
 	if (cub->rc.rdir.x < 0)
 	{
 		cub->rc.step.x = -1;
-		cub->rc.rdist.x = (cub->rc.rpos.x - cub->rc.rmap.x) *
-		cub->rc.rdisd.x;
+		cub->rc.rdist.x = (cub->rc.rpos.x - cub->rc.rmap.x)
+			* cub->rc.rdisd.x;
 	}
 	else
 	{
 		cub->rc.step.x = 1;
-		cub->rc.rdist.x = (cub->rc.rmap.x + 1.0 - cub->rc.rpos.x) *
-		cub->rc.rdisd.x;
+		cub->rc.rdist.x = (cub->rc.rmap.x + 1.0 - cub->rc.rpos.x)
+			* cub->rc.rdisd.x;
 	}
 	if (cub->rc.rdir.y < 0)
 	{
 		cub->rc.step.y = -1;
-		cub->rc.rdist.y = (cub->rc.rpos.y - cub->rc.rmap.y) *
-		cub->rc.rdisd.y;
+		cub->rc.rdist.y = (cub->rc.rpos.y - cub->rc.rmap.y)
+			* cub->rc.rdisd.y;
 	}
 	else
 	{
 		cub->rc.step.y = 1;
-		cub->rc.rdist.y = (cub->rc.rmap.y + 1.0 - cub->rc.rpos.y) *
-			cub->rc.rdisd.y;
+		cub->rc.rdist.y = (cub->rc.rmap.y + 1.0 - cub->rc.rpos.y)
+			* cub->rc.rdisd.y;
 	}
 }
 

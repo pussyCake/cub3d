@@ -12,9 +12,9 @@
 
 #include "cub.h"
 
-int ft_size_buff(char **buff)
+int	ft_size_buff(char **buff)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (buff[i])
@@ -22,10 +22,10 @@ int ft_size_buff(char **buff)
 	return (i);
 }
 
-void    ft_ckeck_isdigit(char *buf, t_cub *cub)
+void	ft_ckeck_isdigit(char *buf, t_cub *cub)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	i = 0;
 	size = ft_strlen(buf);
@@ -37,7 +37,7 @@ void    ft_ckeck_isdigit(char *buf, t_cub *cub)
 	}
 }
 
-void    ft_ckeck_isalpha(char *s, int i, t_cub *cub)
+void	ft_ckeck_isalpha(char *s, int i, t_cub *cub)
 {
 	while (s[i])
 	{
@@ -47,9 +47,9 @@ void    ft_ckeck_isalpha(char *s, int i, t_cub *cub)
 	}
 }
 
-void    ft_check_resolution(t_cub *cub, char ***buf)
+void	ft_check_resolution(t_cub *cub, char ***buf)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (!ft_isdigit(cub->param.r[i]))
@@ -58,18 +58,19 @@ void    ft_check_resolution(t_cub *cub, char ***buf)
 			ft_notify_error("error in resolution", cub);
 		i++;
 	}
-    ft_ckeck_isalpha(cub->param.r, i, cub);
-	if (!(*buf = ft_split(cub->param.r + i, ' ')))
+	ft_ckeck_isalpha(cub->param.r, i, cub);
+	*buf = ft_split(cub->param.r + i, ' ');
+	if (!(*buf))
 		ft_notify_error("malloc error in resolution", cub);
 }
 
-void    ft_get_resolution(t_cub *cub)
+void	ft_get_resolution(t_cub *cub)
 {
 	char	**buf;
 	int		word;
 
 	word = -1;
-    ft_check_resolution(cub, &buf);
+	ft_check_resolution(cub, &buf);
 	if (ft_size_buff(buf) == 2)
 	{
 		while (++word < 2)
@@ -84,7 +85,7 @@ void    ft_get_resolution(t_cub *cub)
 	ft_del_buff((void **)buf);
 	if (!cub->win_w || !cub->win_h || cub->win_w < 0 || cub->win_h < 0)
 		ft_notify_error("error in resolution", cub);
-    mlx_get_screen_size(&cub->w_max, &cub->h_max);
+	mlx_get_screen_size(&cub->w_max, &cub->h_max);
 	if (cub->win_w > cub->w_max)
 		cub->win_w = cub->w_max;
 	if (cub->win_h > cub->h_max)

@@ -6,13 +6,13 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:23:20 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/15 15:29:30 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 13:56:48 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void		ft_place_plr(t_cub *cub, int y, int x)
+void	ft_place_plr(t_cub *cub, int y, int x)
 {
 	if (cub->flag_plr == 0 && (ft_strchr("NSWE", cub->map[y][x])))
 	{
@@ -36,9 +36,9 @@ void	ft_novalid_sym(t_cub *cub, int y, int x)
 
 void	ft_walk_map(t_cub *cub)
 {
-	int x;
-	int y;
-	int k;
+	int	x;
+	int	y;
+	int	k;
 
 	y = 1;
 	while (cub->map[y] && y < cub->map_h)
@@ -60,7 +60,7 @@ void	ft_walk_map(t_cub *cub)
 void	ft_check_map(t_cub *cub)
 {
 	ft_valid_map(cub);
-	cub->h_total = ft_strlen(cub->map[0] + ft_strlen(cub->map[cub->map_h -1]));
+	cub->h_total = ft_strlen(cub->map[0] + ft_strlen(cub->map[cub->map_h - 1]));
 	ft_walk_map(cub);
 	if (cub->flag_plr == 0)
 		ft_notify_error("no valid map", cub);

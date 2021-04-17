@@ -6,15 +6,16 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 21:24:09 by pantigon          #+#    #+#             */
-/*   Updated: 2020/11/08 18:11:30 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 15:02:31 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char				*ft_crt_word(char **str, size_t len_word, size_t i)
+static char	*ft_crt_word(char **str, size_t len_word, size_t i)
 {
-	if ((str[i] = (char*)malloc(sizeof(char) * (len_word + 1))) == NULL)
+	str[i] = (char *)malloc(sizeof(char) * (len_word + 1));
+	if (str[i] == NULL)
 	{
 		while (i > -1)
 			free(str[i--]);
@@ -24,7 +25,7 @@ static char				*ft_crt_word(char **str, size_t len_word, size_t i)
 	return (str[i]);
 }
 
-static size_t			ft_len_word(char const *s, char c)
+static size_t	ft_len_word(char const *s, char c)
 {
 	size_t	len;
 
@@ -37,7 +38,7 @@ static size_t			ft_len_word(char const *s, char c)
 	return (len);
 }
 
-static size_t			ft_word_count(char const *s, char c)
+static size_t	ft_word_count(char const *s, char c)
 {
 	size_t	count;
 
@@ -54,7 +55,7 @@ static size_t			ft_word_count(char const *s, char c)
 	return (count);
 }
 
-char					**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**str;
 	size_t	word_count;
@@ -65,14 +66,16 @@ char					**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	word_count = ft_word_count(s, c);
-	if ((str = (char**)malloc(sizeof(char*) * (word_count + 1))) == NULL)
+	str = (char **)malloc(sizeof(char *) * (word_count + 1));
+	if (str == NULL)
 		return (NULL);
 	while (*s && i < word_count)
 	{
 		while (*s == c)
 			s++;
 		len_word = ft_len_word(s, c);
-		if ((str[i] = ft_crt_word(str, len_word, i)) == NULL)
+		str[i] = ft_crt_word(str, len_word, i);
+		if (str[i] == NULL)
 			return (NULL);
 		ft_strlcpy(str[i++], s, len_word + 1);
 		s = s + len_word;

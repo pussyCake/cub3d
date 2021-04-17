@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 19:00:43 by pantigon          #+#    #+#             */
-/*   Updated: 2021/03/24 07:02:20 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 15:05:38 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -45,7 +45,7 @@ int					ft_toupper(int chr);
 char				*ft_strchr(const char *str, int ch);
 char				*ft_strrchr(const char *str, int ch);
 char				*ft_strnstr(const char *big, const char *little,
-								size_t len);
+						size_t len);
 int					ft_atoi(const char *str);
 void				*ft_calloc(size_t num, size_t size);
 char				*ft_strdup(const char *str);

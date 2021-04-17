@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/15 15:05:47 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:27:22 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_create_list(t_cub *cub, char *line, int *i, t_list *tmp)
 {
-	if (!(tmp->content = ft_strdup(line + *i)))
+	tmp->content = ft_strdup(line + *i);
+	if (!(tmp->content))
 		ft_notify_error("FAIL MALLOC WRITE LINE IN LIST", cub);
 	tmp->next = 0;
 	ft_lstadd_back(&cub->tmap, tmp);
@@ -30,8 +31,9 @@ void	ft_read_line(t_cub *cub, char *line, int *i, int *flag_map)
 	{
 		(*flag_map)++;
 		*i = 0;
-		if (!(buff = malloc(sizeof(t_list))))
-		  	ft_notify_error("FAIL MALLOC WRITE LINE IN LIST", cub);
+		buff = malloc(sizeof(t_list));
+		if (!buff)
+			ft_notify_error("FAIL MALLOC WRITE LINE IN LIST", cub);
 		ft_create_list(cub, line, i, buff);
 		//ft_putendl_fd(cub->tmap->content, 1);
 	}
@@ -57,7 +59,6 @@ void	ft_read_file(t_cub *cub, int fd)
 	}
 	ft_check_number_param(cub);
 	ft_check_path(cub);
-	
 	// ft_putendl_fd(cub->param.r, 1);
 	// ft_putendl_fd(cub->param.n, 1);
 	// ft_putendl_fd(cub->param.s, 1);
@@ -70,17 +71,18 @@ void	ft_read_file(t_cub *cub, int fd)
 
 void	ft_create_map(t_cub *cub)
 {
-	int i;
-	t_list *buff;
+	int		i;
+	t_list	*buff;
 
- 	if (!(cub->map= (char**)malloc(sizeof(char *) *
-		ft_lstsize(cub->tmap) + 1)))
+	cub->map = (char **)malloc(sizeof(char *) * ft_lstsize(cub->tmap) + 1);
+	if (!(cub->map))
 		ft_notify_error("MALLOC FAIL IN CREATE MAP", cub);
 	i = 0;
 	buff = cub->tmap;
 	while (buff)
 	{
-		if (!(cub->map[i] = ft_strdup(buff->content)))
+		cub->map[i] = ft_strdup(buff->content);
+		if (!(cub->map[i]))
 			ft_notify_error("MALLOC FAIL IN CREATE MAP", cub);
 		buff = buff->next;
 		i++;
@@ -90,13 +92,14 @@ void	ft_create_map(t_cub *cub)
 	// i = 0;
 	// while (cub->map[i])
 	// 	ft_putendl_fd(cub->map[i++], 1);
- }
+}
 
 void	ft_open_file(t_cub *cub, char *file)
 {
 	int		fd;
 
-	if ((fd = open(file, O_RDONLY)) < 0)
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
 		ft_notify_error("FAILED TO OPEN THE FILE", cub);
 	ft_read_file(cub, fd);
 	close(fd);

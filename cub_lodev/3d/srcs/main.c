@@ -6,21 +6,21 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/16 14:49:22 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 13:11:41 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void		ft_check_save(t_cub *cub, int argc, char *s)
+void	ft_check_save(t_cub *cub, int argc, char *s)
 {
 	if (argc == 3 && (ft_strncmp(s, "--save", 7) == 0))
 		cub->flag_save = 1;
 	else if (argc == 3)
-		ft_notify_error( "for save screen input '--save'", cub);
+		ft_notify_error("for save screen input '--save'", cub);
 }
 
-int		check_name_cub(char *str, t_cub *cub)
+int	check_name_cub(char *str, t_cub *cub)
 {
 	int		len;
 	char	*s;
@@ -31,7 +31,7 @@ int		check_name_cub(char *str, t_cub *cub)
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_cub	cub;
 
@@ -48,9 +48,5 @@ int		main(int argc, char **argv)
 	// 		return (re_errors(info.error, &info));
 	// 	return (SUCCESS);
 	// }
-	
-	// if ((info.error = events(&info)) != SUCCESS)
-	// 	return (re_errors(info.error, &info));
-	// return (SUCCESS);
 	return (0);
 }

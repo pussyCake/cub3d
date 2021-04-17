@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 17:00:32 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/16 17:25:01 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:41:42 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_texture(t_cub *cub)
 {
-	double wallx;
+	double	wallx;
 
 	if (cub->rc.wall == 0 || cub->rc.wall == 2)
 		wallx = cub->rc.rpos.y + cub->rc.dist * cub->rc.rdir.y;
@@ -35,6 +35,6 @@ void	ft_texture(t_cub *cub)
 	else
 		cub->rc.text.id = 3;
 	cub->rc.step_text = 1.0 * 64 / cub->rc.rh;
-	cub->rc.text_pos = (cub->rc.wstart - cub->win_h / 2 +
-	cub->rc.rh / 2) * cub->rc.step_text;
+	cub->rc.text_pos = (cub->rc.wstart - cub->win_h / 2
+			+ cub->rc.rh / 2) * cub->rc.step_text;
 }

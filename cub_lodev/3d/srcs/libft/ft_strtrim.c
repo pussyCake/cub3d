@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 11:54:44 by pantigon          #+#    #+#             */
-/*   Updated: 2020/11/04 13:18:56 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 15:04:45 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 		while (ft_chrfind(s1[ind_end], set) == 1)
 			ind_end--;
 	}
-	if ((str = (char*)malloc(sizeof(char) * (ind_end - ind_start + 2)))
-	== NULL)
+	str = (char *)malloc(sizeof(char) * (ind_end - ind_start + 2));
+	if (str == NULL)
 		return (NULL);
 	ft_strlcpy(str, s1 + ind_start, ind_end - ind_start + 2);
 	return (str);

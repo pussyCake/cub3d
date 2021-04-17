@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 14:00:34 by pantigon          #+#    #+#             */
-/*   Updated: 2020/11/08 17:30:48 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:55:53 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static size_t	ft_nbrlen(int n)
 	return (len);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	size_t	len;
@@ -37,7 +37,8 @@ char			*ft_itoa(int n)
 	if (nn == 0)
 		return (ft_strdup("0"));
 	len = ft_nbrlen(nn);
-	if ((str = (char*)malloc(sizeof(char) * (len + 1))) == NULL)
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
 		return (NULL);
 	str[len--] = '\0';
 	if (n < 0)

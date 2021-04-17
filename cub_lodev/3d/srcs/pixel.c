@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 17:20:18 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/16 17:54:39 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:28:54 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	pixel_textur(t_img *text, t_cub *cub)
 {
-	cub->col.text = text->addr[64 *
-	cub->rc.text.y + cub->rc.text.x];
+	cub->col.text = text->addr[64
+		* cub->rc.text.y + cub->rc.text.x];
 }
 
 // void		ft_get_col_text(t_cub *cub)
@@ -30,10 +30,10 @@ void	pixel_textur(t_img *text, t_cub *cub)
 // 		pixel_textur(cub->textur2, cub);
 // }
 
-void		ft_get_pixel_col(t_cub *cub, unsigned int colour, int x, int y)
+void	ft_get_pixel_col(t_cub *cub, unsigned int colour, int x, int y)
 {
 	if (y >= cub->img->height || x >= cub->img->width || x < 0
-	|| y < 0)
+		|| y < 0)
 		return ;
 	cub->img->addr[y * cub->img->width + x] = colour;
 }

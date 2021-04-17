@@ -6,13 +6,13 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 10:58:42 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/15 13:55:57 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 13:51:02 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int		ft_exit(t_cub *cub)
+int	ft_exit(t_cub *cub)
 {
 	// free_tab(info);
 	// free_img(info);

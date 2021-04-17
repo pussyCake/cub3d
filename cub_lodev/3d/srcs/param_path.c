@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:02:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/15 13:57:51 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:21:13 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_check_space(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ft_isalpha(str[i]))
@@ -51,19 +51,24 @@ void	ft_free_structure(char *str)
 void	ft_check_path(t_cub *cub)
 {
 	ft_check_prefix(cub);
-	if (!(cub->param.no = ft_strtrim(ft_strchr(cub->param.n, '.'), " ")))
+	cub->param.no = ft_strtrim(ft_strchr(cub->param.n, '.'), " ");
+	if (!(cub->param.no))
 		ft_notify_error_param("FAIL malloc in : ", cub, "NO");
 	ft_free_structure(cub->param.n);
-	if (!(cub->param.so = ft_strtrim(ft_strchr(cub->param.s, '.'), " ")))
+	cub->param.so = ft_strtrim(ft_strchr(cub->param.s, '.'), " ");
+	if (!(cub->param.so))
 		ft_notify_error_param("FAIL malloc in : ", cub, "SO");
 	ft_free_structure(cub->param.s);
-	if (!(cub->param.we = ft_strtrim(ft_strchr(cub->param.w, '.'), " ")))
+	cub->param.we = ft_strtrim(ft_strchr(cub->param.w, '.'), " ");
+	if (!(cub->param.we))
 		ft_notify_error_param("FAIL malloc in : ", cub, "WE");
 	ft_free_structure(cub->param.w);
-	if (!(cub->param.ea = ft_strtrim(ft_strchr(cub->param.e, '.'), " ")))
+	cub->param.ea = ft_strtrim(ft_strchr(cub->param.e, '.'), " ");
+	if (!(cub->param.ea))
 		ft_notify_error_param("FAIL malloc in : ", cub, "EA");
 	ft_free_structure(cub->param.e);
-	if (!(cub->param.spr = ft_strtrim(ft_strchr(cub->param.sp, '.'), " ")))
+	cub->param.spr = ft_strtrim(ft_strchr(cub->param.sp, '.'), " ");
+	if (!(cub->param.spr))
 		ft_notify_error_param("FAIL malloc in : ", cub, "S");
 	ft_free_structure(cub->param.sp);
 }

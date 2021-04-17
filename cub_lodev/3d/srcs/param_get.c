@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:15:46 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/15 13:57:46 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:02:59 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	ft_params(char **str, char *s, char *line, t_cub *cub)
 {
 	if (ft_strncmp(s, line, ft_strlen(s)) == 0 && *str == NULL)
 	{
-		if (!(*str = ft_strdup(line)))
-	 		ft_notify_error_param("MALLOC FAIL in PARAM: ", cub, s);
+		*str = ft_strdup(line);
+		if (!(*str))
+			ft_notify_error_param("MALLOC FAIL in PARAM: ", cub, s);
 	}
 	else
 		ft_notify_error_param("FAIL PARAM: ", cub, s);

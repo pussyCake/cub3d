@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:12:13 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/16 17:18:37 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:13:21 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 void	ft_init_texture(t_cub *cub)
 {
-	if ((cub->text_n = ft_create_text(cub, cub->param.no)) == NULL)
+	cub->text_n = ft_create_text(cub, cub->param.no);
+	if ((cub->text_n) == NULL)
 		ft_notify_error("fail in texture", cub);
-	if ((cub->text_s = ft_create_text(cub, cub->param.so)) == NULL)
+	cub->text_s = ft_create_text(cub, cub->param.so);
+	if ((cub->text_s) == NULL)
 		ft_notify_error("fail in texture", cub);
-	if ((cub->text_w = ft_create_text(cub, cub->param.we)) == NULL)
+	cub->text_w = ft_create_text(cub, cub->param.we);
+	if ((cub->text_w) == NULL)
 		ft_notify_error("fail in texture", cub);
-	if ((cub->text_e = ft_create_text(cub, cub->param.ea)) == NULL)
+	cub->text_e = ft_create_text(cub, cub->param.ea);
+	if ((cub->text_e) == NULL)
 		ft_notify_error("fail in texture", cub);
-	if ((cub->text_sp = ft_create_text(cub, cub->param.spr)) == NULL)
+	cub->text_sp = ft_create_text(cub, cub->param.spr);
+	if ((cub->text_sp) == NULL)
 		ft_notify_error("fail in texture", cub);
 }
 
@@ -52,26 +57,27 @@ void	ft_init_plr(t_cub *cub)
 
 void	ft_init_for_start(t_cub *cub)
 {
-	if (!(cub->mlx = mlx_init()))
+	cub->mlx = mlx_init();
+	if (!(cub->mlx))
 		ft_notify_error("fail mlx", cub);
-	 if (!(cub->win = mlx_new_window(cub->mlx, cub->win_w, cub->win_h, "GAME")))
-	 	ft_notify_error("fail mlx (create win)", cub);
+	cub->win = mlx_new_window(cub->mlx, cub->win_w, cub->win_h, "GAME");
+	if (!(cub->win))
+		ft_notify_error("fail mlx (create win)", cub);
 	//cub->img = ft_new_image(cub);
 	ft_init_plr(cub);
 }
 
-
 void	ft_init_param(t_cub *cub, char *file)
 {
 	cub->rc.speed = 0.05;
-	
 	ft_open_file(cub, file);
 	ft_check_map(cub);
 	ft_get_coloure(cub, cub->param.f, 'F');
 	ft_get_coloure(cub, cub->param.c, 'C');
 	ft_get_resolution(cub);
 	ft_init_for_start(cub);
-	if (!(cub->rc.zbuff = malloc(sizeof(double) * cub->win_w)))
+	cub->rc.zbuff = malloc(sizeof(double) * cub->win_w);
+	if (!(cub->rc.zbuff))
 		ft_notify_error("fail malloc", cub);
 	//ft_init_texture(cub);
 }

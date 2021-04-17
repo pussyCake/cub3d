@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:04:43 by pantigon          #+#    #+#             */
-/*   Updated: 2020/11/03 19:55:52 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/17 15:05:12 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if ((ft_strlen(s) - (size_t)start) < len)
 		len = ft_strlen(s) - (int)start;
-	if ((cpy = (char*)malloc(sizeof(char) * (len + 1))) == NULL)
+	cpy = (char *)malloc(sizeof(char) * (len + 1));
+	if (cpy == NULL)
 		return (NULL);
 	ft_strlcpy(cpy, s + start, len + 1);
 	cpy[len] = '\0';
