@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 18:18:59 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 12:16:12 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 12:20:14 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_sprt_for_loop(t_cub *cub)
 			cub->col_text = cub->text_sp->addr[cub->text_sp->width *
 			cub->sprt.y + cub->sprt.x];
 			if (cub->col_text != 000000)
-				ft_get_pixel_col(cub->img, cub->col_text, cub->sprt.column, y);
+				ft_get_pixel_col(cub, cub->col_text, cub->sprt.column, y);
 			y++;
 		}
 	}

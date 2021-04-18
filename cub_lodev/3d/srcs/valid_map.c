@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:28:41 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 14:50:15 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 12:25:47 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,29 +53,22 @@ void	ft_parse(t_cub *cub, int y, int *x)
 	if ((ft_strchr("0NSEW", cub->map[y][*x])) && y != 0
 		&& y != cub->map_h && *x != 0)
 		ft_check_inmap(cub, y, *x);
-	//printf("%d:%d\n", y, *x);
-	//ft_putendl_fd("START", 0);
 }
 
 void	ft_valid_map(t_cub *cub)
 {
 	int	x;
 	int	y;
-	//int start_x;
 
 	y = 0;
 	while (y < cub->map_h)
 	{
-//		start_x = x;
-		//ft_putendl_fd("START", 0);
 		x = 0;
 		while (cub->map[y][x])
 		{
 			ft_parse(cub, y, &x);
 			x++;
-			//printf("%c", cub->map[y][x]);
 		}
-		//printf("\n");
 		y++;
 	}
 }

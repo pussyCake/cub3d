@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 19:09:55 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 12:25:09 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_read_line(t_cub *cub, char *line, int *i, int *flag_map)
 		if (!buff)
 			ft_notify_error("FAIL MALLOC WRITE LINE IN LIST", cub);
 		ft_create_list(cub, line, i, buff);
-		//ft_putendl_fd(cub->tmap->content, 1);
 	}
 }
 
@@ -59,14 +58,6 @@ void	ft_read_file(t_cub *cub, int fd)
 	}
 	ft_check_number_param(cub);
 	ft_check_path(cub);
-	// ft_putendl_fd(cub->param.r, 1);
-	// ft_putendl_fd(cub->param.n, 1);
-	// ft_putendl_fd(cub->param.s, 1);
-	// ft_putendl_fd(cub->param.w, 1);
-	// ft_putendl_fd(cub->param.e, 1);
-	// ft_putendl_fd(cub->param.sp, 1);
-	// ft_putendl_fd(cub->param.f, 1);
-	// ft_putendl_fd(cub->param.c, 1);
 }
 
 void	ft_create_map(t_cub *cub)
@@ -89,9 +80,6 @@ void	ft_create_map(t_cub *cub)
 	}
 	cub->map[i] = 0;
 	cub->map_h = i;
-	// i = 0;
-	// while (cub->map[i])
-	// 	ft_putendl_fd(cub->map[i++], 1);
 }
 
 void	ft_open_file(t_cub *cub, char *file)

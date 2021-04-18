@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:12:13 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 21:03:09 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 12:24:47 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	ft_init_texture(t_cub *cub)
 	cub->text_e = ft_create_text(cub, cub->param.ea);
 	if ((cub->text_e) == NULL)
 		ft_notify_error("fail in texture EA", cub);
-	// cub->text_sp = ft_create_text(cub, cub->param.spr);
-	// if ((cub->text_sp) == NULL)
-	// 	ft_notify_error("fail in texture SPRITE", cub);
+	cub->text_sp = ft_create_text(cub, cub->param.spr);
+	if ((cub->text_sp) == NULL)
+		ft_notify_error("fail in texture SPRITE", cub);
 }
 
 void	ft_init_plr(t_cub *cub)
