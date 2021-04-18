@@ -6,91 +6,87 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 18:18:59 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 14:38:01 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 12:16:12 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-// static void	add_sprite_part_two(t_cub *cub)
-// {
-// 	int d;
-// 	int y;
-
-// 	y = cub->sprt.drawstart_y;
-// 	if (cub->sprt.transy > 0 && cub->sprt.stripe > 0 && cub->sprt.stripe <
-// 	cub->win_w && cub->sprt.transy < cub->rc.zbuff[cub->sprt.stripe])
-// 	{
-// 		while (y < cub->sprt.drawend_y)
-// 		{
-// 			d = y * 256 - cub->win_h * 128 + cub->sprt.sprite_height * 128;
-// 			cub->sprt.y =
-// 			((d * 64) / cub->sprt.sprite_height) / 256;
-// 			cub->col.text = cub->text_sp->addr[cub->text_sp->width *
-// 			cub->sprt.y + cub->sprt.x];
-// 			if (cub->col.text != PINK && cub->col.text != BLACK)
-// 				put_pixel(cub->img, cub->col.text, cub->sprt.stripe, y);
-// 			y++;
-// 		}
-// 	}
-// }
-
-static void	calc_end_start(t_cub *cub)
+void	ft_sprt_for_loop(t_cub *cub)
 {
-	if (cub->sprt.drawstart_y < 0)
-		cub->sprt.drawstart_y = 0;
-	cub->sprt.drawend_y = cub->sprt.sprite_height / 2 + cub->win_h / 2;
-	if (cub->sprt.drawend_y >= cub->win_h)
-		cub->sprt.drawend_y = cub->win_h - 1;
-	cub->sprt.sprite_width = abs((int)(cub->win_h / (cub->sprt.transy)));
-	cub->sprt.drawstart_x = -cub->sprt.sprite_width / 2
-		+ cub->sprt.spritescreenx;
-	if (cub->sprt.drawstart_x < 0)
-		cub->sprt.drawstart_x = 0;
-	cub->sprt.drawend_x = cub->sprt.sprite_width / 2 + cub->sprt.spritescreenx;
-	if (cub->sprt.drawend_x >= cub->win_w)
-		cub->sprt.drawend_x = cub->win_w - 1;
+	int d;
+	int y;
+
+	y = cub->sprt.start_y;
+	if (cub->sprt.tf_y > 0 && cub->sprt.column > 0 && cub->sprt.column <
+	cub->win_w && cub->sprt.tf_y < cub->rc.zbuff[cub->sprt.column])
+	{
+		while (y < cub->sprt.end_y)
+		{
+			d = y * 256 - cub->win_h * 128 + cub->sprt.h * 128;
+			cub->sprt.y = ((d * 64) / cub->sprt.h) / 256;
+			cub->col_text = cub->text_sp->addr[cub->text_sp->width *
+			cub->sprt.y + cub->sprt.x];
+			if (cub->col_text != 000000)
+				ft_get_pixel_col(cub->img, cub->col_text, cub->sprt.column, y);
+			y++;
+		}
+	}
 }
 
-static void	sprite_calc(t_cub *cub, int i)
+void	ft_for_draw_sprt(t_cub *cub)
 {
-	double	inv;
+	if (cub->sprt.start_y < 0)
+		cub->sprt.start_y = 0;
+	cub->sprt.end_y = cub->sprt.h / 2 + cub->win_h / 2;
+	if (cub->sprt.end_y >= cub->win_h)
+		cub->sprt.end_y = cub->win_h - 1;
+	cub->sprt.w = abs((int)(cub->win_h / (cub->sprt.tf_y)));
+	cub->sprt.start_x = -cub->sprt.w / 2 + cub->sprt.scrnx;
+	if (cub->sprt.start_x < 0)
+		cub->sprt.start_x = 0;
+	cub->sprt.end_x = cub->sprt.w / 2 + cub->sprt.scrnx;
+	if (cub->sprt.end_x >= cub->win_w)
+		cub->sprt.end_x = cub->win_w - 1;
+}
 
-	cub->sprt.spcamx = cub->sprt_plc[cub->rc.sp_order[i]].x
+void	ft_sprtcast(t_cub *cub, int i)
+{
+	double	inv_det;
+
+	cub->sprt.cam_x = cub->sprt_plc[cub->sprt.spr_ord[i]].x
 		- cub->plr.x;
-	cub->sprt.spcamy = cub->sprt_plc[cub->rc.sp_order[i]].y
+	cub->sprt.cam_y = cub->sprt_plc[cub->sprt.spr_ord[i]].y
 		- cub->plr.y;
-	inv = 1.0 / (cub->rc.plane.x * cub->rc.dir.y - cub->rc.dir.x
+	inv_det = 1.0 / (cub->rc.plane.x * cub->rc.dir.y - cub->rc.dir.x
 			* cub->rc.plane.y);
-	cub->sprt.transx = inv * (cub->rc.dir.y * cub->sprt.spcamx - cub->rc.dir.x
-			* cub->sprt.spcamy);
-	cub->sprt.transy = inv * (-cub->rc.plane.y
-			* cub->sprt.spcamx + cub->rc.plane.x * cub->sprt.spcamy);
-	cub->sprt.spritescreenx = (int)((cub->win_w / 2) * (1 + cub->sprt.transx
-				/ cub->sprt.transy));
-	cub->sprt.sprite_height = abs((int)(cub->win_h / cub->sprt.transy));
-	cub->sprt.drawstart_y = -cub->sprt.sprite_height / 2 + cub->win_h / 2;
-	calc_end_start(cub);
+	cub->sprt.tf_x = inv_det * (cub->rc.dir.y * cub->sprt.cam_x - cub->rc.dir.x
+			* cub->sprt.cam_y);
+	cub->sprt.tf_y = inv_det * (-cub->rc.plane.y
+			* cub->sprt.cam_x + cub->rc.plane.x * cub->sprt.cam_y);
+	cub->sprt.scrnx = (int)((cub->win_w / 2) * (1 + cub->sprt.tf_x
+				/ cub->sprt.tf_y));
+	cub->sprt.h = abs((int)(cub->win_h / cub->sprt.tf_y));
+	cub->sprt.start_y = -cub->sprt.h / 2 + cub->win_h / 2;
+	ft_for_draw_sprt(cub);
 }
 
-void	add_sprite(t_cub *cub)
+void	ft_spr_crt(t_cub *cub)
 {
 	int	i;
 
 	i = -1;
 	while (++i < cub->num_sprite)
 	{
-		sprite_calc(cub, i);
-		cub->sprt.stripe = cub->sprt.drawstart_x;
-		while (cub->sprt.stripe < cub->sprt.drawend_x)
+		ft_sprtcast(cub, i);
+		cub->sprt.column = cub->sprt.start_x;
+		while (cub->sprt.column < cub->sprt.end_x)
 		{
 			cub->sprt.x = (int)(256
-					* (cub->sprt.stripe - (-cub->sprt.sprite_width
-							/ 2 + cub->sprt.spritescreenx))
-					* cub->text_sp->width
-					/ cub->sprt.sprite_width / 256);
-			add_sprite_part_two(cub);
-			cub->sprt.stripe++;
+					* (cub->sprt.column - (-cub->sprt.w / 2 + cub->sprt.scrnx))
+					* cub->text_sp->width / cub->sprt.w / 256);
+			ft_sprt_for_loop(cub);
+			cub->sprt.column++;
 		}
 	}
 }

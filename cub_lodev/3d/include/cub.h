@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 22:48:44 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 12:14:52 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ typedef struct s_trgb
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	unsigned char	t;
-}				t_trgb;
+	unsigned char	a;
+}				t_rgb;
 
 typedef union u_coloure
 {
 	unsigned int	all;
 	char			tab[4];
-	t_trgb			trgb;
+	t_rgb			rgb;
 }				t_coloure;
 
 typedef struct s_player
@@ -96,26 +96,28 @@ typedef struct s_rc
 	double	wall_dist;
 	double	speed;
 	double	*zbuff;
-	int		*sp_order;
-	double	*sp_distance;
+	// int		*sp_order;
+	// double	*sp_distance;
 
 }				t_rc;
 
 typedef struct s_sprite
 {
 	double	sp_dist;
-	double	spcamx;
-	double	spcamy;
-	double	transx;
-	double	transy;
-	int		spritescreenx;
-	int		sprite_height;
-	int		drawstart_y;
-	int		drawend_y;
-	int		sprite_width;
-	int		drawstart_x;
-	int		drawend_x;
-	int		stripe;
+	double	cam_x;
+	double	cam_y;
+	double	tf_x;
+	double	tf_y;
+	int		scrnx;
+	int		h;
+	int		start_y;
+	int		end_y;
+	int		w;
+	int		start_x;
+	int		end_x;
+	int		column;
+	int		*spr_ord;
+	double	*spr_dist;
 	int		x;
 	int		y;
 }				t_sprite;
@@ -201,9 +203,10 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	ft_create_world(t_cub *cub);
 void	ft_texture(t_cub *cub);
 void	ft_get_pixel(t_cub *cub, int x);
+void	ft_get_pixel_col(t_cub *cub, unsigned int colour, int x, int y);
 void	ft_del_data(t_cub *cub);
 void	ft_del_text(t_cub *cub, t_img *text);
 void	ft_del_img(t_cub *cub);
-//void	ft_make_spr(t_cub *cub);
+void	ft_make_spr(t_cub *cub);
 
 #endif
