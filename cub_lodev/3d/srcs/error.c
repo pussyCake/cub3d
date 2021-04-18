@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 10:58:42 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 18:51:52 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 20:53:34 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_exit(t_cub *cub)
 	ft_del_text(cub, cub->text_n);
 	ft_del_text(cub, cub->text_s);
 	ft_del_text(cub, cub->text_w);
-	//ft_del_text(cub, cub->text_sp);
+	ft_del_text(cub, cub->text_sp);
 	if (cub->win)
 		mlx_destroy_window(cub->mlx, cub->win);
 	if (cub->mlx)

@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 18:18:59 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 12:20:14 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 21:09:49 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 void	ft_sprt_for_loop(t_cub *cub)
 {
-	int d;
-	int y;
+	int	d;
+	int	y;
 
 	y = cub->sprt.start_y;
-	if (cub->sprt.tf_y > 0 && cub->sprt.column > 0 && cub->sprt.column <
-	cub->win_w && cub->sprt.tf_y < cub->rc.zbuff[cub->sprt.column])
+	if (cub->sprt.tf_y > 0 && cub->sprt.column > 0 && cub->sprt.column
+		< cub->win_w && cub->sprt.tf_y < cub->rc.zbuff[cub->sprt.column])
 	{
 		while (y < cub->sprt.end_y)
 		{
 			d = y * 256 - cub->win_h * 128 + cub->sprt.h * 128;
 			cub->sprt.y = ((d * 64) / cub->sprt.h) / 256;
-			cub->col_text = cub->text_sp->addr[cub->text_sp->width *
-			cub->sprt.y + cub->sprt.x];
-			if (cub->col_text != 000000)
-				ft_get_pixel_col(cub, cub->col_text, cub->sprt.column, y);
+			cub->col_text = cub->text_sp->addr[cub->text_sp->width
+				* cub->sprt.y + cub->sprt.x];
+			if ((unsigned int)cub->col_text != 0xFF000000)
+				ft_get_pixel_col(cub->img, cub->col_text, cub->win_w
+					- cub->sprt.column, y);
 			y++;
 		}
 	}

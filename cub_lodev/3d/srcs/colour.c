@@ -50,8 +50,6 @@ void	ft_check_coloure(t_coloure *col, char **buff, t_cub *cub)
 		ft_del_buff((void **)buff);
 		ft_notify_error("fail in coloure", cub);
 	}
-    //if (!cub->col.r || !cub->col.g || !cub->col.b)
-	//	ft_notify_error("fail malloc in coloure", cub);
 	if (col->rgb.r > 255 || col->rgb.r < 0 || col->rgb.g > 255
 		|| col->rgb.g < 0 || col->rgb.b > 255 || col->rgb.g < 0)
 		ft_notify_error("fail in coloure", cub);

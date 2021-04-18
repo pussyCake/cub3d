@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 12:25:09 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 20:57:40 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_read_file(t_cub *cub, int fd)
 		while ((line[i] == ' ' || line[i] == '\t') && line[i])
 			i++;
 		ft_read_line(cub, line, &i, &flag_map);
-		free(line);//возможен лик ткряю лайн в функции выше
+		free(line);
 	}
 	ft_check_number_param(cub);
 	ft_check_path(cub);

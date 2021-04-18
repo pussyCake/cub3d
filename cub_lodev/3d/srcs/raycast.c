@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:27:28 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 11:21:04 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 20:54:59 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,16 @@ void	ft_create_world(t_cub *cub)
 	int	x;
 
 	x = 0;
-	while (x < cub->win_w - 1)
+	while (x < cub->win_w)
 	{
 		ft_init_ray(cub, x);
 		ft_dir_ray(cub);
 		ft_check_hit(cub);
 		ft_raylen(cub);
 		ft_texture(cub);
-		ft_get_pixel(cub, x);
+		ft_get_pixel(cub, cub->win_w - x);
 		cub->rc.zbuff[x] = cub->rc.wall_dist;
-		ft_make_spr(cub);
 		x++;
 	}
+	ft_make_spr(cub);
 }

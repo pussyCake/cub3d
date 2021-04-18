@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 12:19:50 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 21:43:30 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ typedef struct s_rc
 	double	wall_dist;
 	double	speed;
 	double	*zbuff;
-	// int		*sp_order;
-	// double	*sp_distance;
 
 }				t_rc;
 
@@ -203,11 +201,12 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	ft_create_world(t_cub *cub);
 void	ft_texture(t_cub *cub);
 void	ft_get_pixel(t_cub *cub, int x);
-void	ft_get_pixel_col(t_cub *cub, unsigned int colour, int x, int y);
+void	ft_get_pixel_col(t_img *img, unsigned int colour, int x, int y);
 void	ft_del_data(t_cub *cub);
 void	ft_del_text(t_cub *cub, t_img *text);
 void	ft_del_img(t_cub *cub);
 void	ft_make_spr(t_cub *cub);
 void	ft_spr_crt(t_cub *cub);
+void	ft_save(t_cub *cub);
 
 #endif

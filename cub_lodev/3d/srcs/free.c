@@ -65,6 +65,6 @@ void	ft_del_data(t_cub *cub)
 		free(cub->param.f);
 	if (cub->param.c)
 		free(cub->param.c);
-	// if (cub->param.sp)
-	// 	free(cub->param.sp);
+	if (cub->param.spr)
+		free(cub->param.spr);
 }

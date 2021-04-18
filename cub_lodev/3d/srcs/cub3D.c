@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 16:05:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 18:15:33 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/18 21:08:56 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_check_save(t_cub *cub, int argc, char *s)
 
 int	check_name_cub(char *str, t_cub *cub)
 {
-	int		len;
 	char	*s;
 
 	s = ft_strchr(str, '.');
@@ -41,12 +40,8 @@ int	main(int argc, char **argv)
 	if (argc == 3)
 		ft_check_save(&cub, argc, argv[2]);
 	ft_init_param(&cub, argv[1]);
+	if (cub.flag_save == 1)
+		ft_save(&cub);
 	ft_hook(&cub);
-	// if (info.flag_save == 1)
-	// {
-	// 	if ((info.error = launch_save(&info)) != SUCCESS)
-	// 		return (re_errors(info.error, &info));
-	// 	return (SUCCESS);
-	// }
 	return (0);
 }
