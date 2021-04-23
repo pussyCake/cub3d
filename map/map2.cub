@@ -1,6 +1,6 @@
 R 1200 700
 NO ./texture/wall/8.xpm
-SO ./texture/wall/5.xpm
+SO ./texture/wall/1.xpm
 WE ./texture/wall/6.xpm
 EA ./texture/wall/1.xpm
 S ./texture/sprite/pigeons.xpm

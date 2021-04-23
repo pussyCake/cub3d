@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 18:18:59 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/23 13:28:22 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/23 17:28:46 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_sprt_for_loop(t_cub *cub)
 	if (cub->sprt.tf_y > 0 && cub->sprt.column > 0 && cub->sprt.column
 		< cub->win_w && cub->sprt.tf_y < cub->rc.zbuff[cub->sprt.column])
 	{
-		while (y < cub->sprt.end_y)
+		while (y < cub->sprt.end_y + 1)
 		{
 			d = y * 256 - cub->win_h * 128 + cub->sprt.h * 128;
 			cub->sprt.y = ((d * 64) / cub->sprt.h) / 256;
