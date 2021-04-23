@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 17:27:28 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/23 16:58:58 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/23 23:58:42 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_raylen(t_cub *cub)
 	if (cub->rc.h_start < 0)
 		cub->rc.h_start = 0;
 	cub->rc.h_end = cub->rc.wall_h / 2 + cub->win_h / 2;
-	if (cub->rc.h_end >= cub->win_h)
+	if (cub->rc.h_end >= cub->win_h || cub->rc.h_end == -2147483648)
 		cub->rc.h_end = cub->win_h - 1;
 }
 
