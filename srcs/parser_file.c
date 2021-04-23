@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/24 00:25:14 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 00:30:45 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_read_file(t_cub *cub, int fd)
 	{
 		byte = get_next_line(fd, &line);
 		i = 0;
-		while ((line[i] == ' ' || line[i] == '\t') && line[i])
+		while ((line[i] == ' ') && line[i])
 				i++;
 		if (line[i] == '\0' && cub->sum_param >= 8 && i == 0)
 		{

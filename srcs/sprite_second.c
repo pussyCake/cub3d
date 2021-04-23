@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 18:18:59 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/23 17:28:46 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 00:42:44 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_sprt_for_loop(t_cub *cub)
 			cub->sprt.y = ((d * 64) / cub->sprt.h) / 256;
 			cub->col_text = cub->text_sp->addr[cub->text_sp->width
 				* cub->sprt.y + cub->sprt.x];
-			if ((unsigned int)cub->col_text != 0xFF000000)
+			if ((unsigned int)cub->col_text != 9961608)
 				ft_get_pixel_col(cub->img, cub->col_text, cub->win_w
 					- cub->sprt.column, y);
 			y++;
