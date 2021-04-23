@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/23 16:30:15 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 00:10:47 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ typedef struct s_cub
 	t_coloure	col_c;
 	t_sprite	sprt;
 	t_plr		*sprt_plc;
+	int			sum_param;
 	int			col_text;
 	int			place_char;
 	int			num_sprite;

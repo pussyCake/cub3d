@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/24 00:02:19 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 00:25:14 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_read_line(t_cub *cub, char *line, int *i, int *flag_map)
 
 	if (ft_isalpha(line[*i]))
 		ft_get_param(cub, line, *i, flag_map);
-	else if (ft_isdigit(line[*i]))
+	else if (ft_isdigit(line[*i]) || line[*i] == '\0')
 	{
 		(*flag_map)++;
 		*i = 0;
@@ -36,10 +36,6 @@ void	ft_read_line(t_cub *cub, char *line, int *i, int *flag_map)
 			ft_notify_error("FAIL MALLOC WRITE LINE IN LIST", cub);
 		ft_create_list(cub, line, i, buff);
 	}
-	// else if (line[])
-	// {
-
-	// }
 }
 
 void	ft_read_file(t_cub *cub, int fd)
@@ -56,8 +52,19 @@ void	ft_read_file(t_cub *cub, int fd)
 		byte = get_next_line(fd, &line);
 		i = 0;
 		while ((line[i] == ' ' || line[i] == '\t') && line[i])
-			i++;
-		ft_read_line(cub, line, &i, &flag_map);
+				i++;
+		if (line[i] == '\0' && cub->sum_param >= 8 && i == 0)
+		{
+			free(line);
+			ft_notify_error("empty line in map", cub);
+		}
+		if (line[i] == '\0' && cub->sum_param < 8 && i != 0)
+		{
+			free(line);
+			ft_notify_error("non-empty line in param", cub);
+		}
+		if (byte != -1 || byte != 0)
+			ft_read_line(cub, line, &i, &flag_map);
 		free(line);
 	}
 	ft_check_number_param(cub);

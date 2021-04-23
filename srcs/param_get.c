@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:15:46 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 14:02:59 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 00:14:51 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_params(char **str, char *s, char *line, t_cub *cub)
 	}
 	else
 		ft_notify_error_param("FAIL PARAM: ", cub, s);
+	cub->sum_param += 1;
 }
 
 void	ft_get_param(t_cub *cub, char *line, int i, int *flag_map)
