@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 21:43:30 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/23 16:30:15 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,5 +208,6 @@ void	ft_del_img(t_cub *cub);
 void	ft_make_spr(t_cub *cub);
 void	ft_spr_crt(t_cub *cub);
 void	ft_save(t_cub *cub);
+void	ft_check_format(t_cub *cub, char *str);
 
 #endif

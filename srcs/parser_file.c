@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:28:17 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 20:57:40 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/23 16:56:25 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void	ft_read_line(t_cub *cub, char *line, int *i, int *flag_map)
 			ft_notify_error("FAIL MALLOC WRITE LINE IN LIST", cub);
 		ft_create_list(cub, line, i, buff);
 	}
+	// else if (line[])
+	// {
+
+	// }
 }
 
 void	ft_read_file(t_cub *cub, int fd)
@@ -58,6 +62,11 @@ void	ft_read_file(t_cub *cub, int fd)
 	}
 	ft_check_number_param(cub);
 	ft_check_path(cub);
+	ft_check_format(cub, cub->param.no);
+	ft_check_format(cub, cub->param.so);
+	ft_check_format(cub, cub->param.we);
+	ft_check_format(cub, cub->param.ea);
+	ft_check_format(cub, cub->param.spr);
 }
 
 void	ft_create_map(t_cub *cub)

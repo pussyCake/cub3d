@@ -6,30 +6,41 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 16:28:41 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 12:25:47 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/23 15:21:17 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	ft_check_inmap(t_cub *cub, int y, int x)
+int	ft_check_close(t_cub *cub, int i, int j)
 {
-	if (!ft_strchr("012NSWE", cub->map[y][x - 1]))
+	if (cub->map[i][j] != '1' && cub->map[i][j] != '0'
+	&& cub->map[i][j] != '2' && cub->map[i][j] != 'N'
+	&& cub->map[i][j] != 'S' && cub->map[i][j] != 'E'
+	&& cub->map[i][j] != 'W')
+		return (0);
+	return (1);
+}
+
+int	ft_check_inmap(t_cub *cub, int i, int j)
+{
+	if (ft_check_close(cub, i, j - 1) == 0)
 		ft_notify_error("map fail", cub);
-	else if (!ft_strchr("012NSWE", cub->map[y][x + 1]))
+	else if (ft_check_close(cub, i, j + 1) == 0)
 		ft_notify_error("map fail", cub);
-	else if (!ft_strchr("012NSWE", cub->map[y - 1][x]))
+	else if (ft_check_close(cub, i - 1, j) == 0)
 		ft_notify_error("map fail", cub);
-	else if (!ft_strchr("012NSWE", cub->map[y + 1][x]))
+	else if (ft_check_close(cub, i + 1, j) == 0)
 		ft_notify_error("map fail", cub);
-	else if (!ft_strchr("012NSWE", cub->map[y + 1][x - 1]))
+	else if (ft_check_close(cub, i + 1, j - 1) == 0)
 		ft_notify_error("map fail", cub);
-	else if (!ft_strchr("012NSWE", cub->map[y + 1][x + 1]))
+	else if (ft_check_close(cub, i + 1, j + 1) == 0)
 		ft_notify_error("map fail", cub);
-	else if (!ft_strchr("012NSWE", cub->map[y - 1][x - 1]))
+	else if (ft_check_close(cub, i - 1, j - 1) == 0)
 		ft_notify_error("map fail", cub);
-	else if (!ft_strchr("012NSWE", cub->map[y - 1][x + 1]))
+	else if (ft_check_close(cub, i - 1, j + 1) == 0)
 		ft_notify_error("map fail", cub);
+	return (1);
 }
 
 void	ft_skip_space(t_cub *cub, int y, int *x)

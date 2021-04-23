@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 10:58:42 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 20:53:34 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/23 14:10:30 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,17 @@ int	ft_exit(t_cub *cub)
 
 void	ft_notify_error_param(char *msg, t_cub *cub, char *s)
 {
-	write(2, "\n", 1);
-	write(2, "\033[1;31mError: \033[1;37m", 22);
+	write(2, "Error\n", 6);
 	write(2, msg, ft_strlen(msg));
 	write(2, s, ft_strlen(s));
-	write(2, "\n", 1);
 	write(2, "\n", 1);
 	ft_exit(cub);
 }
 
 void	ft_notify_error(char *msg, t_cub *cub)
 {
-	write(2, "\n", 1);
-	write(2, "\033[1;31mError: \033[1;37m", 22);
+	write(2, "Error\n", 6);
 	write(2, msg, ft_strlen(msg));
-	write(2, "\n", 1);
 	write(2, "\n", 1);
 	ft_exit(cub);
 }

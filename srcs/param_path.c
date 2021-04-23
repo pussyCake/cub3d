@@ -6,11 +6,20 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 14:02:25 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 14:21:13 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/23 16:28:30 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void	ft_check_format(t_cub *cub, char *str)
+{
+	char	*s;
+
+	s = ft_strchr(str + 1, '.');
+	if (!s || ft_strncmp(s, ".xpm", 5) != 0)
+		ft_notify_error("MUST BE '.xpm' texture", cub);
+}
 
 int	ft_check_space(char *str)
 {

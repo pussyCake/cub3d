@@ -31,8 +31,11 @@ void	ft_check_buff(char *buff, t_cub *cub)
 	}
 }
 
-void	ft_check_coloure(t_coloure *col, char **buff, t_cub *cub)
+int	ft_check_coloure(char **buff, t_cub *cub)
 {
+	int	r;
+	int	g;
+	int	b;
 	int	i;
 
 	i = -1;
@@ -40,19 +43,19 @@ void	ft_check_coloure(t_coloure *col, char **buff, t_cub *cub)
 	{
 		while (++i < 3)
 			ft_check_buff(buff[i], cub);
-		col->rgb.r = ft_atoi(buff[2]);
-		col->rgb.g = ft_atoi(buff[1]);
-		col->rgb.b = ft_atoi(buff[0]);
-		col->rgb.a = 0x00;
+		r = ft_atoi(buff[2]);
+		g = ft_atoi(buff[1]);
+		b = ft_atoi(buff[0]);
 	}
 	else
 	{
 		ft_del_buff((void **)buff);
 		ft_notify_error("fail in coloure", cub);
+		return (0);
 	}
-	if (col->rgb.r > 255 || col->rgb.r < 0 || col->rgb.g > 255
-		|| col->rgb.g < 0 || col->rgb.b > 255 || col->rgb.g < 0)
+	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
 		ft_notify_error("fail in coloure", cub);
+	return (1);
 }
 
 void	ft_get_coloure(t_coloure *col, char *s, t_cub *cub)
@@ -67,6 +70,11 @@ void	ft_get_coloure(t_coloure *col, char *s, t_cub *cub)
 	buff = ft_split((s + i), ',');
 	if (!(buff))
 		ft_notify_error("fail malloc in colour", cub);
-	ft_check_coloure(col, buff, cub);
+	if (!ft_check_coloure(buff, cub))
+		ft_notify_error("fail in coloure", cub);
+	col->rgb.r = ft_atoi(buff[2]);
+	col->rgb.g = ft_atoi(buff[1]);
+	col->rgb.b = ft_atoi(buff[0]);
+	col->rgb.a = 0x00;
 	ft_del_buff((void **)buff);
 }
