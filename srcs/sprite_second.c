@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 18:18:59 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/24 00:42:44 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 01:13:32 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	ft_sprt_for_loop(t_cub *cub)
 	int	y;
 
 	y = cub->sprt.start_y;
-	if (cub->sprt.tf_y > 0 && cub->sprt.column > 0 && cub->sprt.column
-		< cub->win_w && cub->sprt.tf_y < cub->rc.zbuff[cub->sprt.column])
+	if (cub->sprt.tf_y > 0 && cub->sprt.column >= 0 && cub->sprt.column
+		<= cub->win_w && cub->sprt.tf_y < cub->rc.zbuff[cub->sprt.column - 1])
 	{
-		while (y < cub->sprt.end_y + 1)
+		while (y < cub->sprt.end_y)
 		{
 			d = y * 256 - cub->win_h * 128 + cub->sprt.h * 128;
 			cub->sprt.y = ((d * 64) / cub->sprt.h) / 256;
@@ -41,14 +41,14 @@ void	ft_for_draw_sprt(t_cub *cub)
 		cub->sprt.start_y = 0;
 	cub->sprt.end_y = cub->sprt.h / 2 + cub->win_h / 2;
 	if (cub->sprt.end_y >= cub->win_h)
-		cub->sprt.end_y = cub->win_h - 1;
+		cub->sprt.end_y = cub->win_h;
 	cub->sprt.w = abs((int)(cub->win_h / (cub->sprt.tf_y)));
 	cub->sprt.start_x = -cub->sprt.w / 2 + cub->sprt.scrnx;
 	if (cub->sprt.start_x < 0)
 		cub->sprt.start_x = 0;
 	cub->sprt.end_x = cub->sprt.w / 2 + cub->sprt.scrnx;
-	if (cub->sprt.end_x >= cub->win_w)
-		cub->sprt.end_x = cub->win_w - 1;
+	if (cub->sprt.end_x > cub->win_w)
+		cub->sprt.end_x = cub->win_w;
 }
 
 void	ft_sprtcast(t_cub *cub, int i)
@@ -81,7 +81,7 @@ void	ft_spr_crt(t_cub *cub)
 	{
 		ft_sprtcast(cub, i);
 		cub->sprt.column = cub->sprt.start_x;
-		while (cub->sprt.column < cub->sprt.end_x)
+		while (cub->sprt.column <= cub->sprt.end_x)
 		{
 			cub->sprt.x = (int)(256
 					* (cub->sprt.column - (-cub->sprt.w / 2 + cub->sprt.scrnx))

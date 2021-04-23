@@ -48,3 +48,14 @@ t_img	*ft_new_image(t_cub *cub)
 	img->height = cub->win_h;
 	return (img);
 }
+
+void	ft_check(t_cub *cub)
+{
+	ft_check_number_param(cub);
+	ft_check_path(cub);
+	ft_check_format(cub, cub->param.no);
+	ft_check_format(cub, cub->param.so);
+	ft_check_format(cub, cub->param.we);
+	ft_check_format(cub, cub->param.ea);
+	ft_check_format(cub, cub->param.spr);
+}
