@@ -4,7 +4,7 @@ SO ./texture/wall/5.xpm
 WE ./texture/wall/6.xpm
   
 EA ./texture/wall/8.xpm
-S ./texture/sprite/777.xpm
+S ./texture/sprite/1.xpm
 F 0,200, 0
 C 255, 0, 0
 

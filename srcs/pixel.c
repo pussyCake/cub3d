@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 17:20:18 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/18 20:54:45 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 13:58:41 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ void	ft_get_pixel(t_cub *cub, int x)
 		cub->rc.text.y = (int)cub->rc.text_pos & (64 - 1);
 		cub->rc.text_pos += cub->rc.step_text;
 		ft_get_col_text(cub);
-		ft_get_pixel_col(cub->img, cub->col_text, x, y);
+		if (cub->col_text == (int)0xFF000000)
+			ft_get_pixel_col(cub->img, 0x00000000, x, y);
+		else
+			ft_get_pixel_col(cub->img, cub->col_text, x, y);
 		y++;
 	}
 	while (y < cub->win_h)
