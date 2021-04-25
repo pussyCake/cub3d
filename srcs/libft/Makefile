@@ -6,11 +6,15 @@
 #    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/29 18:52:01 by pantigon          #+#    #+#              #
-#    Updated: 2021/03/09 14:50:43 by pantigon         ###   ########.fr        #
+#    Updated: 2021/04/25 17:56:37 by pantigon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+FLAG = -Wall -Wextra -Werror
+
+O_DIR = obj
 
 SRCS = ft_memset.c\
 		ft_bzero.c\
@@ -54,24 +58,31 @@ SRCS = ft_memset.c\
 		ft_lstsize.c\
 		ft_lstiter.c\
 		ft_lstdelone.c\
-		ft_lstclear.c
+		ft_lstclear.c\
+		get_next_line.c
 
-HEAD = libft.h
+HEAD = -I.
 
-OBJ = $(SRCS:.c=.o)
-
-%.o: %.c
-	gcc -Wall -Werror -Wextra -I. -c $<
+OBJ = $(addprefix $(O_DIR)/,$(SRCS:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $?
+$(NAME): $(O_DIR) $(OBJ)
+	ar rc $(NAME) $(OBJ)
+
+$(O_DIR): 
+	mkdir -p obj
+
+$(O_DIR)/%.o: %.c 
+	gcc $(FLAG) $(HEAD) -o $@ -c $< 
 
 clean:
 	rm -f $(OBJ)
+	rm -rf $(O_DIR)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY:  all clean fclean re

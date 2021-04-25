@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 19:00:43 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/17 15:05:38 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/25 17:36:33 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# define BUFFER_SIZE 32
 
 typedef struct s_list
 {
@@ -69,5 +70,11 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstnew(void *content);
 int					ft_lstsize(t_list *lst);
+int					get_next_line(int fd, char **line);
+char				*ft_strdup(const char *str);
+size_t				ft_strlen(const char *str);
+char				*ft_strchr(const char *str, int ch);
+void				*ft_memmove(void *dest, const void *src, size_t n);
+char				*ft_strjoin(char const *s1, char const *s2);
 
 #endif
