@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 17:20:18 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/24 13:58:41 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 16:56:29 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pixel_textur(t_img *text, t_cub *cub)
 {
-	cub->col_text = text->addr[64
+	cub->col_text = text->addr[text->height
 		* cub->rc.text.y + cub->rc.text.x];
 }
 
@@ -38,7 +38,7 @@ void	ft_get_pixel_col(t_img *img, unsigned int colour, int x, int y)
 	img->addr[y * img->width + x] = colour;
 }
 
-void	ft_get_pixel(t_cub *cub, int x)
+void	ft_get_pixel(t_cub *cub, int x, t_img *text)
 {
 	int	y;
 
@@ -47,7 +47,7 @@ void	ft_get_pixel(t_cub *cub, int x)
 		ft_get_pixel_col(cub->img, cub->col_c.all, x, y++);
 	while (y >= cub->rc.h_start && y <= cub->rc.h_end)
 	{
-		cub->rc.text.y = (int)cub->rc.text_pos & (64 - 1);
+		cub->rc.text.y = (int)cub->rc.text_pos & (text->height - 1);
 		cub->rc.text_pos += cub->rc.step_text;
 		ft_get_col_text(cub);
 		if (cub->col_text == (int)0xFF000000)

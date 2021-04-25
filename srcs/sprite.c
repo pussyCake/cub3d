@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 17:43:54 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/24 14:52:56 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 16:14:49 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	ft_point_sprt(t_cub *cub)
 
 	i = 0;
 	y = 0;
-	while (y < cub->map_h)
+	while (cub->map[y])
 	{
 		x = 0;
-		while (x < cub->place_char)
+		while (cub->map[y][x])
 		{
 			if (cub->map[y][x] == '2')
 			{

@@ -6,7 +6,7 @@
 /*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:40:30 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/24 01:25:21 by pantigon         ###   ########.fr       */
+/*   Updated: 2021/04/24 16:56:46 by pantigon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,7 @@ void	ft_free_img(t_cub *cub);
 void	ft_control(t_cub *cub);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	ft_create_world(t_cub *cub);
-void	ft_texture(t_cub *cub);
-void	ft_get_pixel(t_cub *cub, int x);
+void	ft_get_pixel(t_cub *cub, int x, t_img *text);
 void	ft_get_pixel_col(t_img *img, unsigned int colour, int x, int y);
 void	ft_del_data(t_cub *cub);
 void	ft_del_text(t_cub *cub, t_img *text);
@@ -211,5 +210,5 @@ void	ft_spr_crt(t_cub *cub);
 void	ft_save(t_cub *cub);
 void	ft_check_format(t_cub *cub, char *str);
 void	ft_check(t_cub *cub);
-
+void	ft_texture(t_cub *cub, t_img *text, int x);
 #endif
