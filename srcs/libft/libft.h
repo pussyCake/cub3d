@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 19:00:43 by pantigon          #+#    #+#             */
-/*   Updated: 2021/04/25 17:36:33 by pantigon         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -76,5 +65,6 @@ size_t				ft_strlen(const char *str);
 char				*ft_strchr(const char *str, int ch);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 char				*ft_strjoin(char const *s1, char const *s2);
+char				**ft_strtok(char *str, char *sep);
 
 #endif

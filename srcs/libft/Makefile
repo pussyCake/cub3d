@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: pantigon <pantigon@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/10/29 18:52:01 by pantigon          #+#    #+#              #
-#    Updated: 2021/04/25 17:56:37 by pantigon         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 NAME = libft.a
 
@@ -59,6 +48,7 @@ SRCS = ft_memset.c\
 		ft_lstiter.c\
 		ft_lstdelone.c\
 		ft_lstclear.c\
+		ft_strtok.c\
 		get_next_line.c
 
 HEAD = -I.
@@ -68,20 +58,21 @@ OBJ = $(addprefix $(O_DIR)/,$(SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(O_DIR) $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@echo "LIBFT compiled"
 
 $(O_DIR): 
-	mkdir -p obj
+	@mkdir -p obj
 
 $(O_DIR)/%.o: %.c 
-	gcc $(FLAG) $(HEAD) -o $@ -c $< 
+	@gcc $(FLAG) $(HEAD) -o $@ -c $< 
 
 clean:
-	rm -f $(OBJ)
-	rm -rf $(O_DIR)
+	@rm -f $(OBJ)
+	@rm -rf $(O_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
