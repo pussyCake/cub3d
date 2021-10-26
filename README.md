@@ -14,9 +14,7 @@ The project runs using the MiniLibX, a simplified version of the Xlib. It can th
 
 ### How to run it
 
-Using ``make test`` will make and run the mandatory part.
-
-You can also use ``make`` to generate the ``cub3D`` executable. You can launch it with ``./cub3D map/map.cub``.
+You can use ``make`` to generate the ``cub3D`` executable. You can launch it with ``./cub3D map/map.cub``.
 
 ### Controls
 
