@@ -6,6 +6,10 @@ First-person 3D representation of a maze using raycasting, similar to Wolfenstei
 
 The project runs using the MiniLibX, a simplified version of the Xlib. It can therefore only run in MacOSX, preferably on a computer with a solid CPU !
 
+### Example work
+
+![](example/cub3d.gif)
+
 ### How to run it
 
 Using ``make test`` will make and run the mandatory part.
