@@ -9,7 +9,7 @@ The project runs using the MiniLibX, a simplified version of the Xlib. It can th
 ### Example work
 
 <p align="center">
-  <img src="example/cub3d.mov" width="60%" />
+  <img src="example/cub3d.gif" width="60%" />
 </p>
 
 ### How to run it
